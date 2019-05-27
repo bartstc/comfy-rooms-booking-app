@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
 
 const Index = () => (
   <Router>
-    <Route exact path="/" component={Home} />
+    <Layout>
+      <Route exact path="/" component={Home} />
+    </Layout>
   </Router>
 );
 

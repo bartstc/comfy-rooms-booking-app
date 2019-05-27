@@ -1,3 +1,21 @@
+export const color = {
+  white: `#fff`,
+  black: `#000000`,
+  lightGrey: `#F6F6F6`,
+  grey: `#888888`
+};
+
+export const fontFamily = {
+  primary: `'Montserrat', sans-serif`,
+  secondary: `'Lato', sans-serif`
+};
+
+export const fontWeight = {
+  light: `300`,
+  regular: `400`,
+  bold: `700`
+};
+
 const size = {
   mobileS: '320px',
   mobileM: '375px',

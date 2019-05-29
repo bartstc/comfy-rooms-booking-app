@@ -11,7 +11,10 @@ export const FormWrapper = styled.form`
   margin: 0 auto;
   margin-bottom: 1.5em;
   background: ${color.white};
-  box-shadow: 2px 2px 5px 0px rgba(136,136,136,1);
+  
+  @media ${device.mobileL} {
+    box-shadow: 2px 2px 5px 0px rgba(136,136,136,1);
+  }
 
   @media ${device.laptop} {
     flex-direction: row;

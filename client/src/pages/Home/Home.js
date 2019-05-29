@@ -4,6 +4,10 @@ import { Banner, BannerTitle, BannerSubtitle } from './Home.styles';
 
 import NavLink from '../../components/NavLink/NavLink';
 import SearchForm from './home/SearchForm';
+import HighestRated from './home/HighestRated';
+import MostVisited from './home/MostVisited';
+import AccomodationTypes from './home/AccomodationTypes';
+import AuthInfo from './home/AuthInfo';
 
 const Home = () => {
   return (
@@ -14,6 +18,10 @@ const Home = () => {
         <NavLink to="/explore">Explore</NavLink>
       </Banner>
       <SearchForm />
+      <HighestRated />
+      <MostVisited />
+      <AccomodationTypes />
+      <AuthInfo />
     </>
   );
 };

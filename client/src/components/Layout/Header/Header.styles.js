@@ -3,6 +3,7 @@ import { color, fontWeight, device } from '../../../utils/styles';
 
 export const HeaderWrapper = styled.header`
   position: fixed;
+  z-index: 10;
   width: 100%;
   height: 60px;
   border-bottom: 1px solid ${color.grey};
@@ -10,6 +11,7 @@ export const HeaderWrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: ${color.white};
 
   @media ${device.mobileL} {
     padding-right: .6em;

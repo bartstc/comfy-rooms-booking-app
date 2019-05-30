@@ -1,29 +1,27 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-import { Banner, BannerTitle, BannerSubtitle } from './Home.styles';
+import {SectionTitle} from './Home.styles';
 
-import NavLink from '../../components/NavLink/NavLink';
-import SearchForm from './home/SearchForm';
+import Banner from './home/Banner';
+import Form from './home/Form';
 import HighestRated from './home/HighestRated';
 import MostVisited from './home/MostVisited';
-import AccomodationTypes from './home/AccomodationTypes';
 import AuthInfo from './home/AuthInfo';
 
-const Home = () => {
-  return (
-    <>
-      <Banner>
-        <BannerTitle>Application for booking rooms.</BannerTitle>
-        <BannerSubtitle>Use our application and find the best accommodation for you.</BannerSubtitle>
-        <NavLink to="/explore">Explore</NavLink>
-      </Banner>
-      <SearchForm />
-      <HighestRated />
-      <MostVisited />
-      <AccomodationTypes />
-      <AuthInfo />
-    </>
-  );
+class Home extends Component {
+
+  render () {
+    return (
+      <>
+        <Banner />
+        <SectionTitle>Choose your destination</SectionTitle>
+        <Form />
+        <HighestRated />
+        <MostVisited />
+        <AuthInfo />
+      </>
+    );
+  }
 };
 
 export default Home;

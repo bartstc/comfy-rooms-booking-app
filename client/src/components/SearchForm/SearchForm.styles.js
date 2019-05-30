@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color, device } from '../../../utils/styles';
+import { color, device } from '../../utils/styles';
 
 export const FormWrapper = styled.form`
   display: flex;

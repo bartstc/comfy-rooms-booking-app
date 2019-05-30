@@ -1,39 +1,22 @@
-import React, { useState } from 'react';
-import isAfter from 'date-fns/isAfter';
+import React from 'react';
 
 import { FormWrapper } from './SearchForm.styles';
-import { SectionTitle } from '../Home.styles';
 
-import TextFieldGroup from '../../../components/Inputs/TextFieldGroup/TextFieldGroup';
-// import TextareaFieldGroup from '../../../components/Inputs/TextareaFieldGroup/TextareaFieldGroup';
-import SelectListGroup from '../../../components/Inputs/SelectListGroup/SelectListGroup';
-import DatePicker from '../../../components/Inputs/DatePicker/DatePicker';
-import Button from '../../../components/Button/Button';
+import TextFieldGroup from '../Inputs/TextFieldGroup/TextFieldGroup';
+import SelectListGroup from '../Inputs/SelectListGroup/SelectListGroup';
+import DatePicker from '../Inputs/DatePicker/DatePicker';
+import Button from '../Button/Button';
 
-const SearchForm = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-
-  const handleChange = ({ start, end }) => {
-    start = start || startDate;
-    end = end || endDate;
-
-    if (isAfter(start, end)) {
-      end = start;
-    };
-
-    setStartDate(start);
-    setEndDate(end);
-  };
-
-  const handleChangeStart = start => handleChange({ start });
-
-  const handleChangeEnd = end => handleChange({ end });
-
+const SearchForm = ({ 
+  handleSubmit,
+  startDate,
+  endDate,
+  handleChangeStart,
+  handleChangeEnd
+}) => {
   return (
     <>
-      <SectionTitle>Choose your destination</SectionTitle>
-      <FormWrapper>
+      <FormWrapper onSubmit={handleSubmit}>
         <TextFieldGroup
           label="Destination:"
           placeholder="Enter city ..."

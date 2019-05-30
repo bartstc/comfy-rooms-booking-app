@@ -68,6 +68,7 @@ export const Logo = styled.h2`
   font-size: 1.3rem;
   font-weight: ${fontWeight.bold};
   text-transform: uppercase;
+  color: ${color.black};
 
   @media ${device.tablet} {
     font-size: 1.8rem;

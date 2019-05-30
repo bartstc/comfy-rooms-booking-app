@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
-import { CardItem, CardImage, CardImageOverlay, CardContent } from './Card.styles';
-
-import NavLink from '../../components/NavLink/NavLink';
+import { CardItem, CardImage, CardContent } from './Card.styles';
 
 const Card = ({ background, path, children }) => (
   <CardItem>
-    <CardImage background={background}>
-      <CardImageOverlay>
-        <NavLink to={path}>Check</NavLink>
-      </CardImageOverlay>
-    </CardImage>
+    <Link to="/">
+      <CardImage background={background}>
+      </CardImage>
+    </Link>
     <CardContent>
       {children}
     </CardContent>

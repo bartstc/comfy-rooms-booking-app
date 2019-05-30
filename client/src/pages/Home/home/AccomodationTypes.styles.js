@@ -34,6 +34,7 @@ export const Type = styled.h2`
   font-size: 1rem;
   margin-top: .4em;
   margin-bottom: .2em;
+  text-align: center;
 
   @media ${device.tablet} {
     font-size: 1.2rem;
@@ -42,4 +43,5 @@ export const Type = styled.h2`
 
 export const Count = styled.p`
   color: ${color.grey};
+  text-align: center;
 `;

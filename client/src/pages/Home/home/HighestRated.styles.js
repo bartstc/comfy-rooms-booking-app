@@ -30,7 +30,6 @@ export const Name = styled.h2`
 `;
 
 export const Location = styled.p`
-  color: ${color.grey};
   font-size: .9rem;
   margin-bottom: .8em;
 `;

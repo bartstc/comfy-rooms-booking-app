@@ -34,7 +34,7 @@ export const ReactDatePicker = styled(DatePicker)`
   border: none;
   color: ${color.accent};
   padding-left: .8em;
-  border: ${props => props.error !== '' ? '1px solid red' : 'none'};
+  border: ${props => props.error !== '' ? '1px solid red' : '1px solid #DAA520'};
 
   @media ${device.laptop} {
     width: 100%;

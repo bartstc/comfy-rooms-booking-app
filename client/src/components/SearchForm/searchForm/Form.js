@@ -71,16 +71,6 @@ const SearchForm = ({
         />
         <Button type="submit">Search</Button>
       </FormWrapper>
-
-      {/* <TextareaFieldGroup
-        label="Add Comment"
-        placeholder="Comment text ..."
-        id="description"
-        name="description"
-        // value={text}
-        // onChange={onChange}
-      /> */}
-
     </>
   )
 };

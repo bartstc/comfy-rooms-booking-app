@@ -27,7 +27,7 @@ export const Select = styled.select`
   height: 40px;
   background: ${color.lightGrey};
   padding: 0 .8em;
-  border: ${props => props.error !== '' ? '1px solid red' : 'none'};
+  border: ${props => props.error !== '' ? '1px solid red' : '1px solid #DAA520'};
   color: ${color.accent};
 
   @media ${device.laptop} {

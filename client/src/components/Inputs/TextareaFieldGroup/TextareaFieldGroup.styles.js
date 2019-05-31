@@ -31,7 +31,7 @@ export const Textarea = styled.textarea`
   padding: .8em;
   border: none;
   color: ${color.accent};
-  border: ${props => props.error !== '' ? '1px solid red' : 'none'};
+  border: ${props => props.error !== '' ? '1px solid red' : '1px solid #DAA520'};
 
   &::placeholder {
     color: ${color.accent};

@@ -13,11 +13,3 @@ export const ExploreContainer = styled.section`
     grid-column-gap: 1em;
   }
 `;
-
-export const Sidebar = styled.div`
-  width: 100%;
-
-  @media ${device.laptop} {
-    max-width: 100%;
-  }
-`;

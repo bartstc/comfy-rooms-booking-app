@@ -7,7 +7,7 @@ export const FormWrapper = styled.form`
   align-items: center;
   justify-content: space-between;
   padding: .9em;
-  max-width: 340px;
+  max-width: 500px;
   margin: 0 auto;
   margin-bottom: 1.5em;
   background: ${color.white};

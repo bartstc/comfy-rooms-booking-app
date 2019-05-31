@@ -29,8 +29,8 @@ const AuthWrapper = ({
   );
 
 AuthWrapper.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,

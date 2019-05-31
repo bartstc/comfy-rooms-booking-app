@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
-import { ExploreContainer, Sidebar } from './Explore.styles';
+import { ExploreContainer } from './Explore.styles';
 
 import SearchForm from '../../components/SearchForm/SearchForm';
 import RoomList from './explore/RoomList';
+import Filters from './explore/Filters';
 
 class Explore extends Component {
   render() {
@@ -11,9 +12,7 @@ class Explore extends Component {
       <>
         <SearchForm />
         <ExploreContainer>
-          <Sidebar>
-
-          </Sidebar>
+          <Filters />
           <RoomList />
         </ExploreContainer>
       </>

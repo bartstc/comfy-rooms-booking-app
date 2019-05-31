@@ -5,13 +5,11 @@ import AuthWrapper from '../../components/AuthWrapper/AuthWrapper';
 import TextFieldGroup from '../../components/Inputs/TextFieldGroup/TextFieldGroup';
 
 const initState = {
-  firstname: '',
-  secondname: '',
   email: '',
   password: ''
 };
 
-const SignIn = () => {
+const OwnerSignIn = () => {
   const signIn = () => {
     console.log(values);
 
@@ -20,35 +18,16 @@ const SignIn = () => {
 
   const { values, handleChange, handleSubmit } = useForm(signIn, initState);
 
-  const { firstname, secondname, email, password } = values;
-
+  const { email, password } = values;
   return (
     <div>
       <AuthWrapper
         handleSubmit={handleSubmit}
-        title="Sign Up"
-        subtitle="Do you already have an account?"
-        path="signin"
-        pathName="Sign In"
+        title="Sign In as Owner"
+        subtitle="You do not have an account?"
+        path="owner_signup"
+        pathName="Sign Up as Owner"
       >
-        <TextFieldGroup
-          label="First name"
-          placeholder="Enter first name ..."
-          id="firstname"
-          name="firstname"
-          // error="error"
-          value={firstname}
-          onChange={handleChange}
-        />
-        <TextFieldGroup
-          label="Second name"
-          placeholder="Enter second name ..."
-          id="secondname"
-          name="secondname"
-          // error="error"
-          value={secondname}
-          onChange={handleChange}
-        />
         <TextFieldGroup
           label="Email"
           placeholder="Enter email ..."
@@ -56,7 +35,7 @@ const SignIn = () => {
           name="email"
           type="email"
           // error="error"
-          value={email}
+          value={email || ''}
           onChange={handleChange}
         />
         <TextFieldGroup
@@ -66,7 +45,7 @@ const SignIn = () => {
           name="password"
           type="password"
           // error="error"
-          value={password}
+          value={password || ''}
           onChange={handleChange}
         />
       </AuthWrapper>
@@ -74,4 +53,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default OwnerSignIn;

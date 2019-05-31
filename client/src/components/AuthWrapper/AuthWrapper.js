@@ -17,7 +17,8 @@ const AuthWrapper = ({
 
     <AuthSection>
       <Title>{title}</Title>
-      <Subtitle>{subtitle} <Link to={path}>{pathName}</Link></Subtitle>
+      <Subtitle>{subtitle}</Subtitle>
+      <Link to={path}>{pathName}</Link>
       <AuthForm onSubmit={handleSubmit}>
         {children}
         <Button

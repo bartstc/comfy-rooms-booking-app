@@ -4,7 +4,7 @@ import { fontWeight, device, color } from '../../../../utils/styles';
 export const RoomCard = styled.li`
   width: 100%;
   margin-bottom: 2.2em;
-  border-bottom: 1px solid ${color.grey};
+  border-bottom: 1px solid ${color.accent};
 
   @media ${device.laptop} {
     display: flex;
@@ -73,7 +73,7 @@ export const Icons = styled.div`
 `;
 
 export const Type = styled.p`
-  background: ${color.grey};
+  background: ${color.accent};
   color: ${color.white};
   font-size: .8rem;
   padding: .2em .4em;

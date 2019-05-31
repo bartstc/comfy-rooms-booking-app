@@ -39,7 +39,7 @@ const SelectListGroup = ({
 
 SelectListGroup.propTypes = {
   name: PropTypes.string.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
   error: PropTypes.string,
   info: PropTypes.string,
   onChange: PropTypes.func.isRequired,

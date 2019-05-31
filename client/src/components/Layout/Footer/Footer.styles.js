@@ -30,11 +30,11 @@ export const FooterWrapper = styled.footer`
 export const FooterTitle = styled.p`
   text-align: center;
   font-weight: ${fontWeight.bold};
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: ${color.white};
 
   @media ${device.tablet} {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 `;
 
@@ -45,7 +45,7 @@ export const SocialList = styled.ul`
   width: 240px;
   margin: 0 auto;
   color: ${color.white};
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -53,7 +53,7 @@ export const SocialList = styled.ul`
 
   @media ${device.tablet} {
     margin-bottom: 1.1em;
-    font-size: 2.2rem;
+    font-size: 1.8rem;
   }
 `;
 
@@ -65,12 +65,12 @@ export const FooterBottom = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  border-top: 1px solid ${color.grey};
+  border-top: 1px solid ${color.accent};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: ${color.grey};
+  color: ${color.accent};
   padding-top: .5em;
 
   @media ${device.tablet} {

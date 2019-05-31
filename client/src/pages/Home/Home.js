@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {SectionTitle} from './Home.styles';
 
 import Banner from './home/Banner';
-import Form from './home/Form';
+import SearchForm from '../../components/SearchForm/SearchForm';
 import HighestRated from './home/HighestRated';
 import MostVisited from './home/MostVisited';
 import AuthInfo from './home/AuthInfo';
@@ -15,7 +15,7 @@ class Home extends Component {
       <>
         <Banner />
         <SectionTitle>Choose your destination</SectionTitle>
-        <Form />
+        <SearchForm />
         <HighestRated />
         <MostVisited />
         <AuthInfo />

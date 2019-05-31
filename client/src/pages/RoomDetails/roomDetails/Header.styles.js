@@ -52,7 +52,7 @@ export const Icons = styled.div`
 export const Location = styled.p`
   font-size: .8rem;
   margin-bottom: .2em;
-  color: ${color.grey};
+  color: ${color.accent};
 
   @media ${device.mobileL} {
     font-size: 1.1rem;

@@ -1,18 +1,28 @@
 import React from 'react';
+import useForm from '../../hooks/useForm';
 
 import AuthWrapper from '../../components/AuthWrapper/AuthWrapper';
 import TextFieldGroup from '../../components/Inputs/TextFieldGroup/TextFieldGroup';
 
-const SignIn = () => {
-  const onSumit = (e) => {
-    e.preventDefault();
-    console.log(e);
-  }
+const initState = {
+  email: '',
+  password: ''
+};
 
+const SignIn = () => {
+  const signIn = () => {
+    console.log(values);
+
+    // handle actions
+  };
+
+  const { values, handleChange, handleSubmit } = useForm(signIn, initState);
+
+  const { email, password } = values;
   return (
     <div>
       <AuthWrapper
-        handleSubmit={onSumit}
+        handleSubmit={handleSubmit}
         title="Sign In"
         subtitle="You do not have an account?"
         path="signup"
@@ -24,9 +34,9 @@ const SignIn = () => {
           id="email"
           name="email"
           type="email"
-        // error="error"
-        // value={username}
-        // handleChange={onChange}
+          // error="error"
+          value={email || ''}
+          onChange={handleChange}
         />
         <TextFieldGroup
           label="Password"
@@ -34,9 +44,9 @@ const SignIn = () => {
           id="password"
           name="password"
           type="password"
-        // error="error"
-        // value={username}
-        // handleChange={onChange}
+          // error="error"
+          value={password || ''}
+          onChange={handleChange}
         />
       </AuthWrapper>
     </div>

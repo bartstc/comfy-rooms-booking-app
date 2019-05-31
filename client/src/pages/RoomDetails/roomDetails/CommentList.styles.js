@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { device, color, fontFamily, fontWeight } from '../../../utils/styles';
 
 export const Title = styled.h2`
-  color: ${color.grey};
+  color: ${color.accent};
   text-transform: uppercase;
   font-size: .8rem;
 
@@ -25,7 +25,7 @@ export const CommentHeader = styled.div`
 `;
 
 export const Rating = styled.p`
-  background: ${color.grey};
+  background: ${color.accent};
   border-radius: 4px;
   color: ${color.white};
   font-weight: ${fontWeight.bold};

@@ -13,7 +13,7 @@ export const Rooms = styled.ul`
 export const Results = styled.h1`
   font-size: .95rem;
   font-weight: ${fontWeight.regular};
-  color: ${color.grey};
+  color: ${color.accent};
   text-transform: uppercase;
   margin-bottom: 1.5em;
 

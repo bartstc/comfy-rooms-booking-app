@@ -2,8 +2,7 @@ export const color = {
   white: `#fff`,
   black: `#000000`,
   lightGrey: `#F6F6F6`,
-  // grey: `#888888`,
-  grey: `#DAA520`
+  accent: `#DAA520`
 };
 
 export const fontFamily = {

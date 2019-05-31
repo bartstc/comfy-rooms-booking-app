@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 import { ExploreContainer, Sidebar } from './Explore.styles';
 
-import Form from './explore/Form';
+import SearchForm from '../../components/SearchForm/SearchForm';
 import RoomList from './explore/RoomList';
 
 class Explore extends Component {
   render() {
     return (
       <>
-        <Form />
+        <SearchForm />
         <ExploreContainer>
           <Sidebar>
 

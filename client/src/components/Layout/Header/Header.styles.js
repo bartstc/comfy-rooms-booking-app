@@ -6,7 +6,7 @@ export const HeaderWrapper = styled.header`
   z-index: 10;
   width: 100%;
   height: 60px;
-  border-bottom: 1px solid ${color.grey};
+  border-bottom: 1px solid ${color.accent};
   padding-left: .6em;
   display: flex;
   align-items: center;

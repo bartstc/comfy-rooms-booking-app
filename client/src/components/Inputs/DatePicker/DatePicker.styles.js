@@ -32,7 +32,7 @@ export const ReactDatePicker = styled(DatePicker)`
   font-family: ${fontFamily.secondary};
   font-size: 1.1rem;
   border: none;
-  color: ${color.grey};
+  color: ${color.accent};
   padding-left: .8em;
   border: ${props => props.error !== '' ? '1px solid red' : 'none'};
 

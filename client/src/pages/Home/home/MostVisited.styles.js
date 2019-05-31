@@ -83,7 +83,7 @@ export const Price = styled.p`
   font-weight: ${fontWeight.regular};
   color: ${color.white};
   font-size: 1rem;
-  background: ${color.grey};
+  background: ${color.accent};
   border-radius: 5px;
   padding: .4em;
 

@@ -45,7 +45,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Rating = styled.p`
-  background: ${color.grey};
+  background: ${color.accent};
   color: ${color.white};
   font-weight: ${fontWeight.bold};
   font-size: .9rem;
@@ -55,6 +55,6 @@ export const Rating = styled.p`
 `;
 
 export const Opinions = styled.p`
-  color: ${color.grey};
+  color: ${color.accent};
   font-size: .9rem;
 `;

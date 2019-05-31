@@ -42,14 +42,19 @@ const DatePicker = ({
 };
 
 DatePicker.propTypes = {
-  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   label: PropTypes.string,
+  name: PropTypes.string.isRequired,
   error: PropTypes.string,
   info: PropTypes.string,
+  disabled: PropTypes.bool,
+  narrow: PropTypes.bool,
+  selected: PropTypes.instanceOf(Date).isRequired,
+  selectsStart: PropTypes.bool,
+  selectsEnd: PropTypes.bool,
+  startDate: PropTypes.instanceOf(Date).isRequired,
+  endDate: PropTypes.instanceOf(Date).isRequired,
   onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.string,
-  id: PropTypes.string.isRequired,
-  narrow: PropTypes.bool
 };
 
 DatePicker.defaultProps = {

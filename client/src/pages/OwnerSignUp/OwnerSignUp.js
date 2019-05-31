@@ -5,13 +5,12 @@ import AuthWrapper from '../../components/AuthWrapper/AuthWrapper';
 import TextFieldGroup from '../../components/Inputs/TextFieldGroup/TextFieldGroup';
 
 const initState = {
-  firstname: '',
-  secondname: '',
+  company: '',
   email: '',
   password: ''
 };
 
-const SignIn = () => {
+const OwnerSignUp = () => {
   const signIn = () => {
     console.log(values);
 
@@ -20,33 +19,24 @@ const SignIn = () => {
 
   const { values, handleChange, handleSubmit } = useForm(signIn, initState);
 
-  const { firstname, secondname, email, password } = values;
+  const { company, email, password } = values;
 
   return (
     <div>
       <AuthWrapper
         handleSubmit={handleSubmit}
-        title="Sign Up"
+        title="Sign Up as Owner"
         subtitle="Do you already have an account?"
-        path="signin"
-        pathName="Sign In"
+        path="owner_signin"
+        pathName="Sign In as Owner"
       >
         <TextFieldGroup
-          label="First name"
-          placeholder="Enter first name ..."
-          id="firstname"
-          name="firstname"
+          label="Company / Name"
+          placeholder="Enter company ..."
+          id="company"
+          name="company"
           // error="error"
-          value={firstname}
-          onChange={handleChange}
-        />
-        <TextFieldGroup
-          label="Second name"
-          placeholder="Enter second name ..."
-          id="secondname"
-          name="secondname"
-          // error="error"
-          value={secondname}
+          value={company}
           onChange={handleChange}
         />
         <TextFieldGroup
@@ -74,4 +64,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default OwnerSignUp;

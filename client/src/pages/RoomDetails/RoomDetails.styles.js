@@ -17,6 +17,7 @@ export const Section = styled.section`
 
 export const Key = styled.p`
   color: ${color.grey};
+  font-weight: ${fontWeight.bold};
   text-transform: uppercase;
   font-size: .8rem;
 

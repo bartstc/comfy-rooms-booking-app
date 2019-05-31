@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { FooterWrapper, FooterTitle, SocialList, SocialItem, FooterBottom, FooInfo } from './Footer.styles';
 
 const Footer = () => (
   <FooterWrapper>
+    <Link to="signup_householder">Sign Up as Householder</Link>
     <FooterTitle>Social Media</FooterTitle>
     <SocialList>
       <SocialItem><i className="fab fa-facebook-f"></i></SocialItem>

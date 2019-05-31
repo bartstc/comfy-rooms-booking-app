@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { fontWeight, device } from '../../../utils/styles';
+import { fontWeight, device, color } from '../../../utils/styles';
 
 export const HeaderWrapper = styled.header`
   @media ${device.tablet} {
@@ -52,6 +52,7 @@ export const Icons = styled.div`
 export const Location = styled.p`
   font-size: .8rem;
   margin-bottom: .2em;
+  color: ${color.grey};
 
   @media ${device.mobileL} {
     font-size: 1.1rem;

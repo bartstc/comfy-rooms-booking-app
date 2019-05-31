@@ -8,9 +8,9 @@ import Footer from './Footer/Footer';
 const Layout = ({ children }) => (
   <>
     <Header />
-      <Main>
-        {children}
-      </Main>
+    <Main>
+      {children}
+    </Main>
     <Footer />
   </>
 );

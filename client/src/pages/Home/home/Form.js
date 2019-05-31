@@ -7,7 +7,7 @@ const Form = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  const handleChange = ({ start, end }) => {
+  const onDateChange = ({ start, end }) => {
     start = start || startDate;
     end = end || endDate;
 
@@ -19,9 +19,9 @@ const Form = () => {
     setEndDate(end);
   };
 
-  const handleChangeStart = start => handleChange({ start });
+  const onChangeStart = start => onDateChange({ start });
 
-  const handleChangeEnd = end => handleChange({ end });
+  const onChangeEnd = end => onDateChange({ end });
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -33,8 +33,8 @@ const Form = () => {
       handleSubmit={handleSubmit}
       startDate={startDate}
       endDate={endDate}
-      handleChangeStart={handleChangeStart}
-      handleChangeEnd={handleChangeEnd}
+      handleChangeStart={onChangeStart}
+      handleChangeEnd={onChangeEnd}
     />
   );
 };

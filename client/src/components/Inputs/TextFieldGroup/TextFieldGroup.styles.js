@@ -26,14 +26,14 @@ export const Input = styled.input`
   width: 290px;
   height: 38px;
   background: ${color.lightGrey};
-  font-family: ${fontFamily.secondary};
+  font-family: ${fontFamily.primary};
   font-size: 1.1rem;
   padding-left: .8em;
   border: none;
   color: ${color.grey};
   border: ${props => props.error !== '' ? '1px solid red' : 'none'};
 
-  &:placeholder {
+  &::placeholder {
     color: ${color.grey};
   }
 

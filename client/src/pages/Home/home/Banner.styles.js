@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { fontWeight, device, color } from '../../../utils/styles';
 
 export const BannerWrapper = styled.section`
+  margin-top: -20px;
   width: 100%;
   height: 260px;
   display: flex;
@@ -22,6 +23,7 @@ export const BannerWrapper = styled.section`
 
   @media ${device.laptop} {
     height: 800px;
+    margin-top: -40px;
   }
 `;
 

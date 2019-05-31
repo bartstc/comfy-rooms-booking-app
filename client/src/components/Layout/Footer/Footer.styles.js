@@ -10,11 +10,20 @@ export const FooterWrapper = styled.footer`
   align-items: center;
   justify-content: center;
   padding: 0 .6em;
-  margin-top: 2em;
 
   @media ${device.tablet} {
     height: 320px;
-    margin-top: 3.4em;
+  }
+
+  a {
+    color: ${color.white};
+    margin-bottom: 1.5em;
+    font-size: 1rem;
+    text-decoration: underline;
+
+    @media ${device.tablet} {
+      font-size: 1.4rem;
+    }
   }
 `;
 

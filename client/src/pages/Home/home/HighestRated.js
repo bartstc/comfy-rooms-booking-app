@@ -16,7 +16,7 @@ class HighestRated extends Component {
           >
             <Name>Triple Estate Hotel</Name>
             <Location>Amsterdam</Location>
-            <Price>Price: $ 420</Price>
+            {/* <Price>Price: $ 420</Price> */}
             <Wrapper>
               <Rating>9.2</Rating>
               <Opinions>23 opinions</Opinions>
@@ -27,7 +27,7 @@ class HighestRated extends Component {
           >
             <Name>Triple Estate Hotel</Name>
             <Location>Amsterdam</Location>
-            <Price>Price: $ 420</Price>
+            {/* <Price>Price: $ 420</Price> */}
             <Wrapper>
               <Rating>9.2</Rating>
               <Opinions>23 opinions</Opinions>
@@ -38,7 +38,7 @@ class HighestRated extends Component {
           >
             <Name>Triple Estate Hotel</Name>
             <Location>Amsterdam</Location>
-            <Price>Price: $ 420</Price>
+            {/* <Price>Price: $ 420</Price> */}
             <Wrapper>
               <Rating>9.2</Rating>
               <Opinions>23 opinions</Opinions>
@@ -49,7 +49,7 @@ class HighestRated extends Component {
           >
             <Name>Triple Estate Hotel</Name>
             <Location>Amsterdam</Location>
-            <Price>Price: $ 420</Price>
+            {/* <Price>Price: $ 420</Price> */}
             <Wrapper>
               <Rating>9.2</Rating>
               <Opinions>23 opinions</Opinions>

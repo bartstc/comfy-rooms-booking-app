@@ -13,7 +13,8 @@ const NavLink = ({ linkType, children, to, customStyles }) => {
 NavLink.propTypes = {
   to: PropTypes.string.isRequired,
   linkType: PropTypes.string,
-  customStyles: PropTypes.object
+  customStyles: PropTypes.object,
+  children: PropTypes.node.isRequired
 };
 
 export default NavLink;

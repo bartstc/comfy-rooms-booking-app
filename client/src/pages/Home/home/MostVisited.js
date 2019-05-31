@@ -15,7 +15,7 @@ class MostVisited extends Component {
             <Card background="/images/Amsterdam.jpg">
               <City>Amsterdam</City>
               <Country>Netherlands</Country>
-              <Price>Average price: 420$</Price>
+              <Price>659 Offers</Price>
             </Card>
           </Link>
           <Card background="/images/Amsterdam.jpg">

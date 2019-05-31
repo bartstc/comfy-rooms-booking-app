@@ -6,7 +6,7 @@ import { HeaderWrapper, Logo } from './Header.styles';
 const Header = () => (
   <HeaderWrapper>
     <Link to="/"><Logo>Comfy rooms</Logo></Link>
-    <Link className="auth-link" to="auth">
+    <Link className="auth-link" to="signin">
       <p>My profile</p>
       <i className="far fa-user"></i>
     </Link>

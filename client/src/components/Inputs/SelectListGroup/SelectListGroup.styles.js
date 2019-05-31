@@ -28,6 +28,7 @@ export const Select = styled.select`
   background: ${color.lightGrey};
   padding: 0 .8em;
   border: ${props => props.error !== '' ? '1px solid red' : 'none'};
+  color: ${color.grey};
 
   @media ${device.laptop} {
     width: 100%;
@@ -40,12 +41,16 @@ export const Option = styled.option`
   font-size: 1.1rem;
   color: ${color.grey};
 
+  &::placeholder {
+    color: ${color.grey};
+  }
+
   &:hover,
   &:focus,
   &:active,
   &:checked {
     background: ${color.grey};
-    color: ${color.lightGrey}
+    color: ${color.white}
   }
 `;
 

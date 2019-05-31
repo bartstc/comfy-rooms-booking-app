@@ -18,7 +18,8 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   customStyles: PropTypes.object,
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 Button.defaultProps = {

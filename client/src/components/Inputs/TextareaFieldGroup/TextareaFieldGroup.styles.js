@@ -33,7 +33,7 @@ export const Textarea = styled.textarea`
   color: ${color.grey};
   border: ${props => props.error !== '' ? '1px solid red' : 'none'};
 
-  &:placeholder {
+  &::placeholder {
     color: ${color.grey};
   }
 

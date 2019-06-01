@@ -17,8 +17,8 @@ const OwnerSignIn = () => {
   };
 
   const { values, handleChange, handleSubmit } = useForm(signIn, initState);
-
   const { email, password } = values;
+
   return (
     <div>
       <AuthWrapper

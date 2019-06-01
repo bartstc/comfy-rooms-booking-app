@@ -28,6 +28,7 @@ export const Input = styled.input`
   background: ${color.lightGrey};
   font-family: ${fontFamily.primary};
   font-size: 1.1rem;
+  font-weight: ${fontWeight.light};
   padding-left: .8em;
   border: none;
   color: ${color.accent};

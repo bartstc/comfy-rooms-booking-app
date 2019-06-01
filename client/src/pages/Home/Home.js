@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {SectionTitle} from './Home.styles';
+import { SectionTitle } from './Home.styles';
 
 import Banner from './home/Banner';
 import SearchForm from '../../components/SearchForm/SearchForm';
@@ -9,7 +9,6 @@ import MostVisited from './home/MostVisited';
 import AuthInfo from './home/AuthInfo';
 
 class Home extends Component {
-
   render () {
     return (
       <>

@@ -6,7 +6,7 @@ import { CardItem, CardImage, CardContent } from './Card.styles';
 
 const Card = ({ background, path, children }) => (
   <CardItem>
-    <Link to="/">
+    <Link to={path}>
       <CardImage background={background}>
       </CardImage>
     </Link>
@@ -23,7 +23,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  background: '/images/Showcase.jpg'
+  background: '/images/not_available.jpg'
 };
 
 export default Card;

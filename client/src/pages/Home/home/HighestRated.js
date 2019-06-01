@@ -12,6 +12,7 @@ const HighestRated = () => {
       <CardList>
         <Card
           path="/"
+          background="/images/Showcase.jpg"
         >
           <Name>Triple Estate Hotel</Name>
           <Location>Amsterdam</Location>
@@ -22,6 +23,7 @@ const HighestRated = () => {
         </Card>
         <Card
           path="/"
+          background="/images/Showcase.jpg"
         >
           <Name>Triple Estate Hotel</Name>
           <Location>Amsterdam</Location>
@@ -32,6 +34,7 @@ const HighestRated = () => {
         </Card>
         <Card
           path="/"
+          background="/images/Showcase.jpg"
         >
           <Name>Triple Estate Hotel</Name>
           <Location>Amsterdam</Location>
@@ -42,6 +45,7 @@ const HighestRated = () => {
         </Card>
         <Card
           path="/"
+          background="/images/Showcase.jpg"
         >
           <Name>Triple Estate Hotel</Name>
           <Location>Amsterdam</Location>

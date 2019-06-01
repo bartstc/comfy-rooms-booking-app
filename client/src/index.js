@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
@@ -11,6 +11,7 @@ import SignUp from './pages/SignUp/SignUp';
 import SignIn from './pages/SignIn/SignIn';
 import OwnerSignUp from './pages/OwnerSignUp/OwnerSignUp';
 import OwnerSignIn from './pages/OwnerSignIn/OwnerSignIn';
+import Profile from './pages/Profile/Profile';
 
 const Index = () => (
   <Router>
@@ -20,6 +21,7 @@ const Index = () => (
       <Route exact path="/signin" component={SignIn} />
       <Route exact path="/owner_signup" component={OwnerSignUp} />
       <Route exact path="/owner_signin" component={OwnerSignIn} />
+      <Route exact path="/profile" component={Profile} />
       <Route exact path="/room/:id" component={RoomDetails} />
       <Route exact path="/" component={Home} />
     </Layout>

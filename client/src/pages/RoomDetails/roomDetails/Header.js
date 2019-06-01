@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { HeaderWrapper, Wrapper, Title, Icons, Location, Value } from './Header.styles';
-import {Key} from '../RoomDetails.styles';
+import { Key } from '../RoomDetails.styles';
 
 import Button from '../../../components/Button/Button';
 

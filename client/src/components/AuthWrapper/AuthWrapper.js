@@ -14,7 +14,6 @@ const AuthWrapper = ({
   path,
   pathName
 }) => (
-
     <AuthSection>
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>

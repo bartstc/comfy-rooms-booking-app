@@ -5,7 +5,6 @@ import { Section, CardList, Card, City, Country, Price } from './MostVisited.sty
 import { SectionTitle } from '../Home.styles';
 
 const MostVisited = () => {
-
   return (
     <Section>
       <SectionTitle>Most visited cities</SectionTitle>

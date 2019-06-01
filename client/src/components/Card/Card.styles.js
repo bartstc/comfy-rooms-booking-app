@@ -19,7 +19,7 @@ export const CardItem = styled.li`
 
 export const CardImage = styled.div`
   height: 220px;
-  background: url(${props => props.background ? props.background : '/images/Showcase.jpg'});
+  background: url(${props => props.background ? props.background : '/images/not_available.jpg'});
   background-size: cover;
   background-position: center;
 

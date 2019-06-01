@@ -18,7 +18,6 @@ const OwnerSignUp = () => {
   };
 
   const { values, handleChange, handleSubmit } = useForm(signIn, initState);
-
   const { company, email, password } = values;
 
   return (

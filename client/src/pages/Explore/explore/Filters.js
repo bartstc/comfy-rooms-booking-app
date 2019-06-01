@@ -23,7 +23,7 @@ const Filters = () => {
     for (let key in data) {
       if (data[key]._id === parseInt(value, 10)) {
         array = data[key].array;
-      }
+      };
     };
 
     return array;
@@ -39,7 +39,6 @@ const Filters = () => {
       newFilters[category] = priceValues;
     };
 
-    // 2
     showFilteredResults(newFilters);
 
     setFilters(newFilters);

@@ -71,18 +71,14 @@ export const facilities = [
   },
   {
     _id: 8,
-    name: 'non-smoking rooms'
+    name: 'non smoking rooms'
   },
   {
     _id: 9,
-    name: '24-hour reception'
-  },
-  {
-    _id: 10,
     name: 'terrace'
   },
   {
-    _id: 11,
+    _id: 10,
     name: 'air conditioning'
   }
 ];

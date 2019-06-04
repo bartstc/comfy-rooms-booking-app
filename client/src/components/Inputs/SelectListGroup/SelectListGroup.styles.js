@@ -7,16 +7,15 @@ export const SelectWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1em;
+  margin-bottom: 1.1em;
 
   @media ${device.laptop} {
     max-width: ${props => props.narrow ? '80px' : 'auto'};
-    margin: 0 .3em;
+    margin-bottom: ${props => props.narrow ? '0' : '1.1em'};
   }
 `;
 
 export const Label = styled.label`
-  text-transform: uppercase;
   font-size: .9rem;
   font-weight: ${fontWeight.regular};
   margin-bottom: .3em;

@@ -31,10 +31,6 @@ export const AuthForm = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
-  input {
-    margin-bottom: 1.1em;
-  }
 `;
 
 export const Title = styled.h1`

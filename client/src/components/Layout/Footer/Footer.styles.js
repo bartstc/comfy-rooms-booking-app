@@ -1,64 +1,60 @@
 import styled from 'styled-components';
-import { color, fontWeight, device } from '../../../utils/styles';
+import { color, fontWeight, fontFamily, device } from '../../../utils/styles';
 
 export const FooterWrapper = styled.footer`
   width: 100%;
-  height: 220px;
   background: ${color.black};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 .6em;
+  padding: 2.4em .6em;
 
   @media ${device.tablet} {
-    height: 320px;
-  }
-
-  a {
-    color: ${color.white};
-    margin-bottom: 1.5em;
-    font-size: 1rem;
-    text-decoration: underline;
-
-    @media ${device.tablet} {
-      font-size: 1.4rem;
-    }
+    height: 360px;
   }
 `;
 
-export const FooterTitle = styled.p`
-  text-align: center;
-  font-weight: ${fontWeight.bold};
-  font-size: 1.2rem;
-  color: ${color.white};
-
-  @media ${device.tablet} {
-    font-size: 1.8rem;
-  }
-`;
-
-export const SocialList = styled.ul`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 240px;
+export const Register = styled.div`
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   color: ${color.white};
-  font-size: 1.5rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  margin: .5em 0;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 2em;
+`;
+
+export const Title = styled.h2`
+  text-transform: uppercase;
+  font-weight: ${fontWeight.bold};
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: .3em;
 
   @media ${device.tablet} {
-    margin-bottom: 1.1em;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
+  }
+
+  @media ${device.laptop} {
+    font-size: 1.7rem;
   }
 `;
 
-export const SocialItem = styled.li`
+export const Subtitle = styled.p`
+  font-weight: ${fontWeight.light};
+  font-family: ${fontFamily.secondary};
+  font-size: 1rem;
+  margin-bottom: .7em;
+  max-width: 700px;
+  line-height: 1.4em;
 
+  @media ${device.tablet} {
+    font-size: 1.2rem;
+  }
 `;
 
 export const FooterBottom = styled.div`

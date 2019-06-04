@@ -1,17 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import { FooterWrapper, FooterTitle, SocialList, SocialItem, FooterBottom, FooInfo } from './Footer.styles';
+import { FooterWrapper, FooterBottom, FooInfo, Register, Title, Subtitle } from './Footer.styles';
+
+import NavLink from '../../NavLink/NavLink';
 
 const Footer = () => (
   <FooterWrapper>
-    <Link to="owner_signup">Register your hotel</Link>
-    <FooterTitle>Social Media</FooterTitle>
-    <SocialList>
-      <SocialItem><i className="fab fa-facebook-f"></i></SocialItem>
-      <SocialItem><i className="fab fa-twitter"></i></SocialItem>
-      <SocialItem><i className="fab fa-instagram"></i></SocialItem>
-    </SocialList>
+    <Register>
+      <Title>Register your hotel</Title>
+      <Subtitle>Create a special account to add your own offers. You will get access to the information panel that allows you to manage your properties in a simple way.</Subtitle>
+      <Subtitle>All you need to do is create an account and after the first login, declare to create a special account to register the object.</Subtitle>
+      <NavLink to="/signup" linkType="light">Sign up</NavLink>
+    </Register>
     <FooterBottom>
       <FooInfo>Comfy Rooms. All Rights Reserved.</FooInfo>
       <FooInfo>Made by Bart.dsn</FooInfo>

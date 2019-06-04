@@ -6,7 +6,6 @@ import Banner from './home/Banner';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import HighestRated from './home/HighestRated';
 import MostVisited from './home/MostVisited';
-import AuthInfo from './home/AuthInfo';
 
 class Home extends Component {
   render () {
@@ -17,7 +16,6 @@ class Home extends Component {
         <SearchForm />
         <HighestRated />
         <MostVisited />
-        <AuthInfo />
       </>
     );
   }

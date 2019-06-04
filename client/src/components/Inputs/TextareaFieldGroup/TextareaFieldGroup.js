@@ -11,7 +11,8 @@ const TextAreaFieldGroup = ({
   id,
   onChange,
   label,
-  info
+  info,
+  narrow
 }) => (
     <TextareaWrapper>
       <Label htmlFor={id}>{label}</Label>
@@ -36,7 +37,8 @@ TextAreaFieldGroup.propTypes = {
   error: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   label: PropTypes.string,
-  info: PropTypes.string
+  info: PropTypes.string,
+  narrow: PropTypes.bool
 };
 
 TextAreaFieldGroup.defaultProps = {

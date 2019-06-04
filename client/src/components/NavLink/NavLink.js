@@ -4,7 +4,11 @@ import { LinkWrapper } from './NavLink.styles';
 
 const NavLink = ({ linkType, children, to, customStyles }) => {
   return (
-    <LinkWrapper className={[linkType].join(' ')} style={customStyles} to={to}>
+    <LinkWrapper 
+      className={[linkType].join(' ')} 
+      style={customStyles} 
+      to={to}
+    >
       {children}
     </LinkWrapper>
   );

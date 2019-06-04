@@ -27,4 +27,15 @@ export const LinkWrapper = styled(Link)`
     background: ${color.white};
     color: ${color.black};
   }
+
+  &.light {
+    background: ${color.white};
+    border: 1px solid ${color.white};
+    color: ${color.black};
+
+    &:hover {
+      background: ${color.black};
+      color: ${color.white};
+    }
+  }
 `;

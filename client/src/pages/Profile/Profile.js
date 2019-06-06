@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../modules/auth/authActions';
 
 import { ProfileContainer, UserData, Title, UserInfo, HistoryList, ListItem, OfferInfo } from './Profile.styles';
 
+import Button from '../../components/Button/Button';
+
 class Profile extends Component {
+  onLogout = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+    this.props.history.push('signin');
+  };
+
   render() {
     return (
       <ProfileContainer>
         <UserData>
+          <Button onClick={this.onLogout}>Logout</Button>
           <Title>User data</Title>
           <UserInfo>First name: <span>John</span></UserInfo>
           <UserInfo>Second name: <span>Doe</span></UserInfo>
@@ -36,4 +48,8 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+Profile.propTypes = {
+  logoutUser: PropTypes.func.isRequired
+};
+
+export default connect(null, {logoutUser})(Profile);

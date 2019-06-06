@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signinUser } from '../../modules/auth/authActions';
 import useForm from '../../hooks/useForm';
 
 import AuthWrapper from '../../components/AuthWrapper/AuthWrapper';
@@ -14,16 +18,14 @@ const fields = [
   { label: 'Password', placeholder: ' Password', name: 'password', type: 'password' }
 ];
 
-const SignIn = () => {
-  const [errors, setErrors] = useState({});
+const SignIn = ({ signinUser, history, errors, auth: { isAuth } }) => {
+  const { values, handleChange, handleSubmit } = useForm(signIn, initState);
 
-  const signIn = () => {
-    console.log(values);
-
-    // handle actions
+  function signIn() {
+    signinUser(values, history);
   };
 
-  const { values, handleChange, handleSubmit } = useForm(signIn, initState);
+  if (isAuth) return <Redirect to="/profile" />;
 
   return (
     <div>
@@ -52,4 +54,12 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+SignIn.propTypes = {
+  signinUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = ({ errors, auth }) => ({ errors, auth });
+
+export default connect(mapStateToProps, { signinUser })(SignIn);

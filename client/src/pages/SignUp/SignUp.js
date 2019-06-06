@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signupUser } from '../../modules/auth/authActions';
 import useForm from '../../hooks/useForm';
 
 import AuthWrapper from '../../components/AuthWrapper/AuthWrapper';
@@ -16,22 +20,14 @@ const fields = [
   { label: 'Password', placeholder: ' Password', name: 'password', type: 'password' }
 ];
 
-const fakeErrors = {
-  fullname: 'Name field required',
-  email: 'Email already exists'
-};
+const SignUp = ({ signupUser, history, errors, auth: { isAuth } }) => {
+  const { values, handleChange, handleSubmit } = useForm(signUp, initState);
 
-const SignIn = () => {
-  const [errors, setErrors] = useState({});
-
-  const signIn = () => {
-    console.log(values);
-    setErrors(fakeErrors);
-
-    // handle actions
+  function signUp() {
+    signupUser(values, history);
   };
 
-  const { values, handleChange, handleSubmit } = useForm(signIn, initState);
+  if (isAuth) return <Redirect to="/profile" />;
 
   return (
     <div>
@@ -60,4 +56,12 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+SignUp.propTypes = {
+  signupUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = ({ errors, auth }) => ({ errors, auth });
+
+export default connect(mapStateToProps, { signupUser })(SignUp);

@@ -15,7 +15,6 @@ export const ProfileContainer = styled.section`
 `;
 
 export const UserData = styled.div`
-
 `;
 
 export const Title = styled.h2`
@@ -24,6 +23,7 @@ export const Title = styled.h2`
   font-weight: ${fontWeight.bold};
   text-transform: uppercase;
   margin-bottom: .1em;
+  margin-top: 1em;
 
   @media ${device.tablet} {
     font-size: 1.3rem;

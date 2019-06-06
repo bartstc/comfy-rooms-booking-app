@@ -8,6 +8,8 @@ require('./models/Hotel');
 require('./models/Room');
 require('./models/Profile');
 
+const users = require('./routes/user');
+
 const app = express();
 
 app.use(express.json());
@@ -19,6 +21,7 @@ app.use(passport.initialize());
 require('./services/passport')(passport);
 
 // Use Routes
+app.use('/api/users', users);
 
 mongoose
   .connect(db, { useNewUrlParser: true })

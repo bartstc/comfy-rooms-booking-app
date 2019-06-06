@@ -18,8 +18,8 @@ const userSchema = new Schema({
     required: true
   },
   role: {
-    type: Number,
-    default: false
+    type: Number, // 0: standard account, 1: owner (authorized to provide the hotel), 2: admin
+    default: 0
   },
   date: {
     type: Date,
@@ -56,7 +56,8 @@ userSchema.methods.generateToken = function (cb) {
   const payload = {
     id: this._id.toHexString(),
     fullname: this.fullname,
-    email: this.email
+    email: this.email,
+    role: this.role
   };
 
   const token = jwt.sign(payload, secretOrKey, { expiresIn: 3600 });

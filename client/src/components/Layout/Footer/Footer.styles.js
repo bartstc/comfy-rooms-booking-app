@@ -9,10 +9,7 @@ export const FooterWrapper = styled.footer`
   align-items: center;
   justify-content: center;
   padding: 2.4em .6em;
-
-  @media ${device.tablet} {
-    height: 360px;
-  }
+  height: 400px;
 `;
 
 export const Register = styled.div`

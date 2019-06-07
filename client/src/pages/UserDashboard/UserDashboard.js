@@ -1,29 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { logoutUser } from '../../modules/auth/authActions';
+import { History, Table, Empty } from './UserDashboard.styles';
+import Dashboard from '../../components/Dashboard/Dashboard';
 
-import { ProfileContainer, Header, Welcome, History, Table, Empty } from './Profile.styles';
-
-import Button from '../../components/Button/Button';
-
-class Profile extends Component {
-  onLogout = e => {
-    e.preventDefault();
-    this.props.logoutUser();
-    this.props.history.push('signin');
-  };
-
+class UserDashboard extends Component {
   render() {
-    // if (!this.props.auth.isAuth) return <Redirect to="/signin" />
-
     return (
-      <ProfileContainer>
-        <Header>
-          <Welcome>Welcome, John Doe!</Welcome>
-          <Button onClick={this.onLogout}>Logout</Button>
-        </Header>
+      <Dashboard name="John Doe" history={this.props.history}>
         <History>
           {/* <Empty>Your history of orders is empty for now.</Empty> */}
           <Table>
@@ -66,15 +48,9 @@ class Profile extends Component {
             </tbody>
           </Table>
         </History>
-      </ProfileContainer>
+      </Dashboard>
     );
   }
-}
-
-Profile.propTypes = {
-  logoutUser: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({ auth }) => ({ auth });
-
-export default connect(mapStateToProps, { logoutUser })(Profile);
+export default UserDashboard;

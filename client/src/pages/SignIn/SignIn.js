@@ -20,7 +20,7 @@ const SignIn = ({ signinUser, history, errors, auth: { isAuth } }) => {
     signinUser(values, history);
   };
 
-  if (isAuth) return <Redirect to="/profile" />;
+  if (isAuth) return <Redirect to="/user_dashboard" />;
 
   return (
     <AuthWrapper

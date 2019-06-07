@@ -6,65 +6,130 @@ export const ProfileContainer = styled.section`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+`;
+
+export const Table = styled.table`
+/* https://codepen.io/marclundgren/pen/hgelI */
+  /* 
+  Generic Styling, for Desktops/Laptops 
+  */
+  width: 100%; 
+  border-collapse: collapse; 
+  /* Zebra striping */
+  tr:nth-of-type(odd) { 
+    background: ${color.lightGrey}; 
+  }
+  th { 
+    background: ${color.black}; 
+    color: white; 
+    font-weight: bold;
+  }
+  td, th { 
+    padding: 6px; 
+    border: 2px solid ${color.white}; 
+    text-align: left; 
+  }
+
+  /* 
+  Max width before this PARTICULAR table gets nasty
+  This query will take effect for any screen smaller than 760px
+  and also iPads specifically.
+  */
+  @media 
+  only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px)  {
+      display: block;
+      position: relative;
+      width: 100%;
+
+      &:after {
+        clear: both;
+        content: '';
+        display: block;
+        font-size: 0;
+        height: 0;
+        visibility: hidden;
+      }
+
+      tbody {
+        display: block;
+        overflow-x: auto;
+        position: relative;
+        white-space: nowrap;
+        width: auto;
+
+
+        tr {
+          display: inline-block;
+          vertical-align: top;
+
+          td {
+            display: block;
+            text-align: center;
+
+            &:first-child {
+              text-align: left;
+            }
+          }
+        }
+      }
+
+      thead {
+        display: block;
+        float: left;
+        margin-right: 10px;
+
+        &:after {
+          clear: both;
+          content: "";
+          display: block;
+          font-size: 0;
+          height: 0;
+          visibility: hidden;
+        }
+
+        th:first-of-type {
+          height: 2.1rem;
+        }
+
+        th {
+          display: block;
+          text-align: right;
+
+          &:first-child {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const Header = styled.header`
+  width: 100%;
+  margin-bottom: 1.4em;
 
   @media ${device.tablet} {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-column-gap: 1em;
+    display: flex;
+    aling-items: center;
+    justify-content: space-between;
   }
 `;
 
-export const UserData = styled.div`
-`;
-
-export const Title = styled.h2`
-  width: 100%;
-  font-size: 1rem;
-  font-weight: ${fontWeight.bold};
-  text-transform: uppercase;
-  margin-bottom: .1em;
-  margin-top: 1em;
-
-  @media ${device.tablet} {
-    font-size: 1.3rem;
-  }
-`;
-
-export const UserInfo = styled.p`
-  font-size: .9rem;
-
-  span {
-    font-weight: ${fontWeight.bold};
-  }
-`;
-
-export const HistoryList = styled.ul`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin: 0 auto;
-  margin-top: 1.7em;
-
-  @media ${device.tablet} {
-    margin-top: 0;
-  }
-`;
-
-export const ListItem = styled.li`
-  width: 100%;
+export const Welcome = styled.h1`
+  font-size: 1.3rem;
+  font-weight: ${fontWeight.light};
   margin-bottom: 1em;
-`;
-
-export const OfferInfo = styled.p`
-  font-size: 1rem;
-  line-height: 1.3em;
 
   @media ${device.tablet} {
-    font-size: 1.2rem;
+    font-size: 1.9rem;
   }
+`;
 
-  span {
-    color: ${color.accent};
-  }
+export const History = styled.div`
+
+`;
+
+export const Empty = styled.p`
+
 `;

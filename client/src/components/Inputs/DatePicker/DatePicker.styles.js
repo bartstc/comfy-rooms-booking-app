@@ -31,9 +31,10 @@ export const ReactDatePicker = styled(DatePicker)`
   font-family: ${fontFamily.secondary};
   font-size: 1.1rem;
   border: none;
-  color: ${color.accent};
+  color: ${color.grey};
   padding-left: .8em;
-  border: ${props => props.error !== '' ? '1px solid red' : '1px solid #DAA520'};
+  border: ${props => props.error !== '' ? '1px solid red' : 'none'};
+  outline-color: ${color.accent};
 
   @media ${device.laptop} {
     width: 100%;

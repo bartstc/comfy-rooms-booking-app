@@ -6,19 +6,13 @@ import { signupUser } from '../../modules/auth/authActions';
 import useForm from '../../hooks/useForm';
 
 import AuthWrapper from '../../components/AuthWrapper/AuthWrapper';
-import TextFieldGroup from '../../components/Inputs/TextFieldGroup/TextFieldGroup';
+import SignUpInputs from './signUp/SignUpInputs';
 
 const initState = {
   fullname: '',
   email: '',
   password: ''
 };
-
-const fields = [
-  { label: 'Full Name', placeholder: ' John Doe', name: 'fullname', type: 'text' },
-  { label: 'Email', placeholder: ' johndoe@email.com', name: 'email', type: 'email' },
-  { label: 'Password', placeholder: ' Password', name: 'password', type: 'password' }
-];
 
 const SignUp = ({ signupUser, history, errors, auth: { isAuth } }) => {
   const { values, handleChange, handleSubmit } = useForm(signUp, initState);
@@ -38,19 +32,11 @@ const SignUp = ({ signupUser, history, errors, auth: { isAuth } }) => {
         path="signin"
         pathName="Sign In"
       >
-        {fields.map(({ label, placeholder, name, type }) => (
-          <TextFieldGroup
-            key={name}
-            label={label}
-            placeholder={placeholder}
-            id={name}
-            name={name}
-            type={type}
-            error={errors[name] || ''}
-            value={values[name]}
-            onChange={handleChange}
-          />
-        ))}
+        <SignUpInputs
+          values={values}
+          errors={errors}
+          handleChange={handleChange}
+        />
       </AuthWrapper>
     </div>
   );

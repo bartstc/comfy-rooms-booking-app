@@ -26,8 +26,9 @@ export const Select = styled.select`
   height: 40px;
   background: ${color.lightGrey};
   padding: 0 .8em;
-  border: ${props => props.error !== '' ? '1px solid red' : '1px solid #DAA520'};
-  color: ${color.accent};
+  border: ${props => props.error !== '' ? '1px solid red' : 'none'};
+  color: ${color.grey};
+  outline-color: ${color.accent};
 
   @media ${device.laptop} {
     width: 100%;
@@ -38,17 +39,17 @@ export const Option = styled.option`
   width: 100%;
   font-family: ${fontFamily.secondary};
   font-size: 1.1rem;
-  color: ${color.accent};
+  color: ${color.black};
 
   &::placeholder {
-    color: ${color.accent};
+    color: ${color.grey};
   }
 
   &:hover,
   &:focus,
   &:active,
   &:checked {
-    background: ${color.accent};
+    background: ${color.black};
     color: ${color.white}
   }
 `;

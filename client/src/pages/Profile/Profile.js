@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../modules/auth/authActions';
 
-import { ProfileContainer, UserData, Title, UserInfo, HistoryList, ListItem, OfferInfo } from './Profile.styles';
+import { ProfileContainer, Header, Welcome, History, Table, Empty } from './Profile.styles';
 
 import Button from '../../components/Button/Button';
 
@@ -15,34 +16,56 @@ class Profile extends Component {
   };
 
   render() {
+    // if (!this.props.auth.isAuth) return <Redirect to="/signin" />
+
     return (
       <ProfileContainer>
-        <UserData>
+        <Header>
+          <Welcome>Welcome, John Doe!</Welcome>
           <Button onClick={this.onLogout}>Logout</Button>
-          <Title>User data</Title>
-          <UserInfo>First name: <span>John</span></UserInfo>
-          <UserInfo>Second name: <span>Doe</span></UserInfo>
-          <UserInfo>Email: <span>johndoe@gmail.com</span></UserInfo>
-        </UserData>
-        <HistoryList>
-          <Title>History</Title>
-          <ListItem>
-            <OfferInfo>Hotel: <span>Triple estate hotel</span></OfferInfo>
-            <OfferInfo>City: <span>Amsterdam</span></OfferInfo>
-            <OfferInfo>Address: <span>Grove Street 22</span></OfferInfo>
-            <OfferInfo>Contact: <span>333 444 555</span></OfferInfo>
-            <OfferInfo>Check in: <span>02.09.2019</span></OfferInfo>
-            <OfferInfo>Check out: <span>02.21.2019</span></OfferInfo>
-          </ListItem>
-          <ListItem>
-            <OfferInfo>Hotel: <span>Triple estate hotel</span></OfferInfo>
-            <OfferInfo>City: <span>Amsterdam</span></OfferInfo>
-            <OfferInfo>Address: <span>Grove Street 22</span></OfferInfo>
-            <OfferInfo>Contact: <span>333 444 555</span></OfferInfo>
-            <OfferInfo>Check in: <span>02.09.2019</span></OfferInfo>
-            <OfferInfo>Check out: <span>02.21.2019</span></OfferInfo>
-          </ListItem>
-        </HistoryList>
+        </Header>
+        <History>
+          {/* <Empty>Your history of orders is empty for now.</Empty> */}
+          <Table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Hotel</th>
+                <th>Contact</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+              </tr>
+              <tr>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+              </tr>
+              <tr>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+              </tr>
+            </tbody>
+          </Table>
+        </History>
       </ProfileContainer>
     );
   }
@@ -52,4 +75,6 @@ Profile.propTypes = {
   logoutUser: PropTypes.func.isRequired
 };
 
-export default connect(null, {logoutUser})(Profile);
+const mapStateToProps = ({ auth }) => ({ auth });
+
+export default connect(mapStateToProps, { logoutUser })(Profile);

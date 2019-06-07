@@ -3,57 +3,48 @@ import setToken from '../../utils/setToken';
 import jwt_decode from 'jwt-decode';
 
 import { GET_ERRORS, CLEAR_ERRORS } from '../error/errorTypes';
-import { SET_CURRENT_USER } from './authTypes';
+import { SET_CURRENT_USER, LOADING_START, LOADING_END } from './authTypes';
 
-// TODO
-// loading before push to signin
+export const setCurrentUser = decoded => ({ type: SET_CURRENT_USER, payload: decoded });
+
+const loadingStart = () => ({type: LOADING_START});
+
+const loadingEnd = () => ({type: LOADING_END});
 
 // SIGNUP USER
-export const signupUser = (userData, history) => dispatch => {
-  axios
-    .post('api/users/signup', userData)
-    .then(() => {
-      history.push('/signin');
-      dispatch({ type: CLEAR_ERRORS });
-    })
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+export const signupUser = (userData, history) => async dispatch => {
+  try {
+    dispatch(loadingStart());
+    await axios.post('api/users/signup', userData);
+    dispatch(loadingEnd());
+
+    history.push('/signin');
+    dispatch({ type: CLEAR_ERRORS });
+  } catch (err) {
+    dispatch(loadingEnd());
+    dispatch({ type: GET_ERRORS, payload: err.response.data })
+  };
 };
 
 // SIGNIN USER - GET USER TOKEN
-export const signinUser = userData => dispatch => {
-  axios
-    .post('api/users/signin', userData)
-    .then(res => {
-      // Save to localStorage
-      const { token } = res.data;
-      // Set token in localStorage
-      localStorage.setItem('jwtToken', token);
-      // Set token into Auth header
-      setToken(token);
-      // Decode token to get user data
-      const decoded = jwt_decode(token);
-      // Set current user
-      dispatch(setCurrentUser(decoded));
-      dispatch({ type: CLEAR_ERRORS });
-    })
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
+export const signinUser = userData => async dispatch => {
+  try {
+    dispatch(loadingStart());
+    const res = await axios.post('api/users/signin', userData);
+    dispatch(loadingEnd());
 
-// SET LOGGED IN USER OBJECT
-export const setCurrentUser = decoded => {
-  return {
-    type: SET_CURRENT_USER,
-    payload: decoded
+    const { token } = res.data;
+    localStorage.setItem('jwtToken', token);
+    // Set token into Auth header
+    setToken(token);
+    // Decode token to get user data
+    const decoded = jwt_decode(token);
+    // Set current user
+    dispatch(setCurrentUser(decoded));
+    dispatch({ type: CLEAR_ERRORS });
+  } catch (err) {
+    dispatch(loadingEnd());
+    dispatch({ type: GET_ERRORS, payload: err.response.data })
   };
 };
 

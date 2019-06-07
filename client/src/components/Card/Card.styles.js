@@ -37,6 +37,5 @@ export const CardImage = styled.div`
 `;
 
 export const CardContent = styled.div`
-  background: ${color.lightGrey};
   padding: .5em;
 `;

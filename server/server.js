@@ -9,6 +9,7 @@ require('./models/Room');
 require('./models/Profile');
 
 const users = require('./routes/user');
+const profiles = require('./routes/profile');
 
 const app = express();
 
@@ -22,6 +23,7 @@ require('./services/passport')(passport);
 
 // Use Routes
 app.use('/api/users', users);
+app.use('/api/profiles', profiles);
 
 mongoose
   .connect(db, { useNewUrlParser: true })

@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { AuthSection, AuthForm, Title, Subtitle } from './AuthWrapper.styles';
 
 import Button from '../Button/Button';
+import Spinner from '../Spinner/Spinner';
 
 const AuthWrapper = ({
   children,
@@ -12,7 +14,8 @@ const AuthWrapper = ({
   title,
   subtitle,
   path,
-  pathName
+  pathName,
+  auth: { loading }
 }) => (
     <AuthSection>
       <Title>{title}</Title>
@@ -20,9 +23,12 @@ const AuthWrapper = ({
       <Link to={path}>{pathName}</Link>
       <AuthForm onSubmit={handleSubmit}>
         {children}
-        <Button
-          type="submit"
-        >Submit</Button>
+        {loading
+          ? <Spinner />
+          : <Button
+            type="submit"
+          >Submit</Button>
+        }
       </AuthForm>
     </AuthSection>
   );
@@ -33,7 +39,10 @@ AuthWrapper.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
-  pathName: PropTypes.string.isRequired
+  pathName: PropTypes.string.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
-export default AuthWrapper;
+const mapStateToProps = ({ auth }) => ({ auth });
+
+export default connect(mapStateToProps)(AuthWrapper);

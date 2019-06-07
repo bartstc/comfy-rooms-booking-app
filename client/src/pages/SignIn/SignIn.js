@@ -6,17 +6,12 @@ import { signinUser } from '../../modules/auth/authActions';
 import useForm from '../../hooks/useForm';
 
 import AuthWrapper from '../../components/AuthWrapper/AuthWrapper';
-import TextFieldGroup from '../../components/Inputs/TextFieldGroup/TextFieldGroup';
+import SignInInputs from './signIn/SignInInputs';
 
 const initState = {
   email: '',
   password: ''
 };
-
-const fields = [
-  { label: 'Email', placeholder: ' johndoe@email.com', name: 'email', type: 'email' },
-  { label: 'Password', placeholder: ' Password', name: 'password', type: 'password' }
-];
 
 const SignIn = ({ signinUser, history, errors, auth: { isAuth } }) => {
   const { values, handleChange, handleSubmit } = useForm(signIn, initState);
@@ -28,29 +23,19 @@ const SignIn = ({ signinUser, history, errors, auth: { isAuth } }) => {
   if (isAuth) return <Redirect to="/profile" />;
 
   return (
-    <div>
-      <AuthWrapper
-        handleSubmit={handleSubmit}
-        title="Sign In"
-        subtitle="You do not have an account?"
-        path="signup"
-        pathName="Sign Up"
-      >
-        {fields.map(({ label, placeholder, name, type }) => (
-          <TextFieldGroup
-            key={name}
-            label={label}
-            placeholder={placeholder}
-            id={name}
-            name={name}
-            type={type}
-            error={errors[name] || ''}
-            value={values[name]}
-            onChange={handleChange}
-          />
-        ))}
-      </AuthWrapper>
-    </div>
+    <AuthWrapper
+      handleSubmit={handleSubmit}
+      title="Sign In"
+      subtitle="You do not have an account?"
+      path="signup"
+      pathName="Sign Up"
+    >
+      <SignInInputs
+        errors={errors}
+        values={values}
+        handleChange={handleChange}
+      />
+    </AuthWrapper>
   );
 };
 

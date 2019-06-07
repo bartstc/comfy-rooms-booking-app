@@ -30,11 +30,12 @@ export const Textarea = styled.textarea`
   font-size: 1.1rem;
   padding: .8em;
   border: none;
-  color: ${color.accent};
-  border: ${props => props.error !== '' ? '1px solid red' : '1px solid #DAA520'};
+  color: ${color.black};
+  border: ${props => props.error !== '' ? '1px solid red' : 'none'};
+  outline-color: ${color.accent};
 
   &::placeholder {
-    color: ${color.accent};
+    color: ${color.grey};
   }
 
   @media ${device.laptop} {

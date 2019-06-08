@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { color, fontWeight, device } from '../../../../utils/styles';
 
-export const Container = styled.div`
+export const HotelCard = styled.li`
   width: 100%;
   padding: 1.6em 1em;
 `;

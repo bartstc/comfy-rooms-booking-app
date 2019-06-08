@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Container, Title, Info, Description } from './Hotel.styles';
+import { HotelCard, Title, Info, Description } from './Hotel.styles';
 import Rooms from './hotel/Rooms';
 import AddRoom from './hotel/AddRoom';
 
@@ -33,7 +33,7 @@ const Hotel = () => {
   const onClickClose = () => setOpen(false);
 
   return (
-    <Container>
+    <HotelCard>
       <Title>Triple Estate Hotel</Title>
       <Description>
         <Info>Handle: <span>tripleestatehotel</span></Info>
@@ -51,7 +51,7 @@ const Hotel = () => {
           values={state}
           handleFilter={onFilter}
       />
-    </Container>
+    </HotelCard>
   );
 };
 

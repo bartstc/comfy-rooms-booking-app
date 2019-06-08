@@ -1,27 +1,15 @@
 import React, { Component } from 'react';
 
 import Dashboard from '../../components/Dashboard/Dashboard';
-import AddHotel from './hotelDashboard/AddHotel.js';
-import HotelList from './hotelDashboard/HotelList';
+import History from './dashboardUser/History';
+import AddComment from './dashboardUser/AddComment';
 
-const initState = {
-  type: 'apartment',
-  stars: '',
-  name: '',
-  city: '',
-  contact: '',
-  description: '',
-  emailTitle: '',
-  emailSubject: '',
-  emailBody: '',
-  // images
-  // pin
-};
-
-class HotelDashboard extends Component {
+class UserDashboard extends Component {
   state = {
     open: false,
-    ...initState
+    hotelId: '',
+    rating: '',
+    text: ''
   };
 
   onChange = e => {
@@ -31,24 +19,34 @@ class HotelDashboard extends Component {
   onSubmit = e => {
     e.preventDefault();
 
+    this.onClose();
     console.log(this.state);
-    this.setState({ open: false, ...initState });
+    this.setState({
+      rating: '',
+      text: ''
+    });
   };
 
-  onClickOpen = () => this.setState({ open: true });
+  onClickOpen = id => {
+    this.setState({
+      open: true,
+      hotelId: id
+    });
+  };
 
   onClickClose = () => this.setState({ open: false });
 
   render() {
     return (
       <Dashboard name="John Doe" history={this.props.history}>
-        <HotelList />
-        <AddHotel
-          open={this.state.open}
+        <History
           handleClickOpen={this.onClickOpen}
-          handleClickClose={this.onClickClose}
+        />
+        <AddComment
+          handleClose={this.onClickClose}
           handleChange={this.onChange}
           handleSubmit={this.onSubmit}
+          open={this.state.open}
           values={this.state}
         />
       </Dashboard>
@@ -56,4 +54,4 @@ class HotelDashboard extends Component {
   }
 };
 
-export default HotelDashboard;
+export default UserDashboard;

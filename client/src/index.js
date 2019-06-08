@@ -14,9 +14,9 @@ import RoomDetails from './pages/RoomDetails/RoomDetails';
 import Explore from './pages/Explore/Explore';
 import SignUp from './pages/SignUp/SignUp';
 import SignIn from './pages/SignIn/SignIn';
-import UserDashboard from './pages/UserDashboard/UserDashboard';
-import HotelDashboard from './pages/HotelDashboard/HotelDashboard';
-import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
+import DashboardUser from './pages/DashboardUser/DashboardUser';
+import DashboardHotel from './pages/DashboardHotel/DashboardHotel';
+import DashboardAdmin from './pages/DashboardAdmin/DashboardAdmin';
 import NotFound from './pages/NotFound/NotFound';
 
 // Check for token (was added throught login action)
@@ -49,9 +49,9 @@ const Index = () => (
           <Route path="/signin" component={SignIn} />
 
           {/* private route!! */}
-          <Route path="/user_dashboard" component={UserDashboard} />
-          <Route path="/hotel_dashboard" component={HotelDashboard} />
-          <Route path="/admin_dashboard" component={AdminDashboard} />
+          <Route path="/user_dashboard" component={DashboardUser} />
+          <Route path="/hotel_dashboard" component={DashboardHotel} />
+          <Route path="/admin_dashboard" component={DashboardAdmin} />
           {/* private route!! */}
           <Route path="/room/:id" component={RoomDetails} />
           <Route component={NotFound} />

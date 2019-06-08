@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { color } from '../../../utils/styles';
 
 export const CheckboxWrapper = styled.div`
+  width: 100%;
 
   .checkbox {
     color: ${color.accent};

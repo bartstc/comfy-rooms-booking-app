@@ -1,39 +1,56 @@
 import React, { Component } from 'react';
-import { Empty } from './HotelDashboard.styles';
 
-import Button from '../../components/Button/Button';
-import Hotel from './hotelDashboard/Hotel';
 import Dashboard from '../../components/Dashboard/Dashboard';
-import Modal from '../../components/Modal/Modal';
+import AddHotel from './hotelDashboard/AddHotel.js';
+import HotelList from './hotelDashboard/HotelList';
+
+const initState = {
+  type: 'apartment',
+  stars: '',
+  name: '',
+  city: '',
+  contact: '',
+  description: '',
+  emailTitle: '',
+  emailSubject: '',
+  emailBody: '',
+  // images
+  // pin
+};
 
 class HotelDashboard extends Component {
   state = {
-    open: false
+    open: false,
+    ...initState
   };
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
+  onSubmit = e => {
+    e.preventDefault();
+
+    console.log(this.state);
+    this.setState({ open: false, ...initState });
   };
+
+  onClickOpen = () => this.setState({ open: true });
+
+  onClickClose = () => this.setState({ open: false });
 
   render() {
     return (
       <Dashboard name="John Doe" history={this.props.history}>
-        {/* <Empty>No offer has been added yet.</Empty> */}
-        <Hotel />
-        <Hotel />
-        <Hotel />
-        <Button onClick={this.handleClickOpen}>New hotel</Button>
-        <Modal
+        <HotelList />
+        <AddHotel
           open={this.state.open}
-          onClose={this.handleClose}
-        >
-          <Button onClick={this.handleClose}>Close</Button>
-        </Modal>
-
+          handleClickOpen={this.onClickOpen}
+          handleClickClose={this.onClickClose}
+          handleChange={this.onChange}
+          handleSubmit={this.onSubmit}
+          values={this.state}
+        />
       </Dashboard>
     );
   }

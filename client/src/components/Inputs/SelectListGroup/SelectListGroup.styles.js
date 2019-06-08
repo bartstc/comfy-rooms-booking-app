@@ -29,6 +29,7 @@ export const Select = styled.select`
   border: ${props => props.error !== '' ? '1px solid red' : 'none'};
   color: ${color.grey};
   outline-color: ${color.accent};
+  font-family: ${fontFamily.primary};
 
   @media ${device.laptop} {
     width: 100%;
@@ -37,7 +38,7 @@ export const Select = styled.select`
 
 export const Option = styled.option`
   width: 100%;
-  font-family: ${fontFamily.secondary};
+  font-family: ${fontFamily.primary};
   font-size: 1.1rem;
   color: ${color.black};
 

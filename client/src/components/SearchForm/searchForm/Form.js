@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { adults, children } from '../../../utils/categories';
 
 import { FormWrapper } from './Form.styles';
 
@@ -8,7 +9,9 @@ import SelectListGroup from '../../Inputs/SelectListGroup/SelectListGroup';
 import DatePicker from '../../Inputs/DatePicker/DatePicker';
 import Button from '../../Button/Button';
 
-const SearchForm = ({ 
+
+
+const SearchForm = ({
   handleSubmit,
   startDate,
   endDate,
@@ -58,7 +61,7 @@ const SearchForm = ({
           narrow
           value={values.adults}
           onChange={handleChange}
-          options={[{ label: '1', value: 1 }, { label: '2', value: 2 }]}
+          options={adults}
         />
         <SelectListGroup
           name="children"
@@ -67,7 +70,7 @@ const SearchForm = ({
           narrow
           value={values.children}
           onChange={handleChange}
-          options={[{ label: '1', value: 1 }, { label: '2', value: 2 }]}
+          options={children}
         />
         <Button type="submit">Search</Button>
       </FormWrapper>
@@ -81,8 +84,7 @@ SearchForm.propTypes = {
   endDate: PropTypes.instanceOf(Date).isRequired,
   handleDateChangeStart: PropTypes.func.isRequired,
   handleDateChangeEnd: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  errors: PropTypes.object
+  handleChange: PropTypes.func.isRequired
 };
 
 export default SearchForm;

@@ -10,11 +10,6 @@ const hotelSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'pins'
   },
-  handle: {
-    type: String,
-    required: true,
-    max: 40
-  },
   type: {
     type: String,
     required: true
@@ -51,10 +46,17 @@ const hotelSchema = new Schema({
     type: Array,
     default: []
   },
-  emailMessage: {
-    title: { type: String, required: true },
-    subject: { type: String, required: true },
-    body: { type: String, required: true }
+  emailTitle: {
+    type: String,
+    required: true
+  },
+  emailSubject: {
+    type: String,
+    required: true
+  },
+  emailBody: {
+    type: String,
+    required: true
   },
   rooms: {
     type: [Schema.Types.ObjectId],

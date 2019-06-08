@@ -28,7 +28,3 @@ export const Welcome = styled.h1`
     font-size: 1.9rem;
   }
 `;
-
-export const Empty = styled.p`
-
-`;

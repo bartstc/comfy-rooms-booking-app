@@ -10,7 +10,7 @@ export const TextareaWrapper = styled.div`
   margin-bottom: 1.1em;
 
   @media ${device.laptop} {
-    max-width: ${props => props.narrow ? '160px' : 'auto'};
+    max-width: ${props => props.narrow ? '160px' : '100%'};
     max-width: ${props => props.narrow ? '0' : '1.1em'};
   }
 `;
@@ -39,7 +39,8 @@ export const Textarea = styled.textarea`
   }
 
   @media ${device.laptop} {
-    width: 100%;
+    /* width: 100%; */
+    min-width: 470px;
   }
 `;
 

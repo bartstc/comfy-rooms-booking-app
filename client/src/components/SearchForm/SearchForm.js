@@ -6,7 +6,7 @@ import Form from './searchForm/Form';
 const initState = {
   destination: 'London',
   adults: '2',
-  children: '1'
+  children: '0'
 };
 
 const SearchForm = () => {

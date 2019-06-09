@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Dashboard from '../../components/Dashboard/Dashboard';
 import History from './dashboardUser/History';
@@ -37,21 +39,38 @@ class UserDashboard extends Component {
   onClickClose = () => this.setState({ open: false });
 
   render() {
+    const {
+      profile: { loading, profile },
+      history,
+      auth: { user: { fullname, role } }
+    } = this.props;
+
     return (
-      <Dashboard name="John Doe" history={this.props.history}>
-        <History
-          handleClickOpen={this.onClickOpen}
-        />
-        <AddComment
-          handleClose={this.onClickClose}
-          handleChange={this.onChange}
-          handleSubmit={this.onSubmit}
-          open={this.state.open}
-          values={this.state}
-        />
+      <Dashboard name={fullname} history={history}>
+        {(role === 1)
+          ? <p>Registration in progress. Please be patient.</p>
+          : <>
+            <History handleClickOpen={this.onClickOpen} />
+            <AddComment
+              handleClose={this.onClickClose}
+              handleChange={this.onChange}
+              handleSubmit={this.onSubmit}
+              open={this.state.open}
+              values={this.state}
+            />
+          </>
+        }
+
       </Dashboard>
     );
   }
 };
 
-export default UserDashboard;
+UserDashboard.propTypes = {
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
+};
+
+const mapStateToProps = ({ profile }) => ({ profile });
+
+export default connect(mapStateToProps)(UserDashboard);

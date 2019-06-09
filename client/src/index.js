@@ -8,6 +8,7 @@ import { setCurrentUser, logoutUser } from './modules/auth/authActions';
 import { store } from './store';
 import Root from './store';
 
+import auth from './hoc/auth';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
 import RoomDetails from './pages/RoomDetails/RoomDetails';
@@ -47,12 +48,9 @@ const Index = () => (
           <Route path="/explore" component={Explore} />
           <Route path="/signup" component={SignUp} />
           <Route path="/signin" component={SignIn} />
-
-          {/* private route!! */}
-          <Route path="/user_dashboard" component={DashboardUser} />
-          <Route path="/hotel_dashboard" component={DashboardHotel} />
-          <Route path="/admin_dashboard" component={DashboardAdmin} />
-          {/* private route!! */}
+          <Route path="/user_dashboard" component={auth(DashboardUser, true)} />
+          <Route path="/hotel_dashboard" component={auth(DashboardHotel, true)} />
+          <Route path="/admin_dashboard" component={auth(DashboardAdmin, true)} />
           <Route path="/room/:id" component={RoomDetails} />
           <Route component={NotFound} />
         </Switch>

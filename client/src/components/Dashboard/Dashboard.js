@@ -1,21 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../modules/auth/authActions';
 
 import { Container, Header, Welcome } from './Dashboard.styles';
 
 import Button from '../Button/Button';
+import Spinner from '../Spinner/Spinner';
+import SelectRole from './dashboard/SelectRole';
 
-const Dashboard = ({ children, name, logoutUser, auth, history }) => {
+const Dashboard = ({ children, name, logoutUser, history, profile: { loading, profile } }) => {
   const onLogout = e => {
     e.preventDefault();
     logoutUser();
     history.push('signin');
   };
 
-  if (!auth.isAuth) return <Redirect to="/signin" />
+  // useEffect and set profile!
+
+  let dashboardContent;
+  let profileExists = Object.keys(profile).length > 0 || null;
+
+  if (loading) dashboardContent = <Spinner />;
+  if (!loading && !profileExists) dashboardContent = <SelectRole />;
+  if (!loading && profileExists) dashboardContent = children;
 
   return (
     <Container>
@@ -23,18 +31,19 @@ const Dashboard = ({ children, name, logoutUser, auth, history }) => {
         <Welcome>Welcome, {name}!</Welcome>
         <Button onClick={onLogout}>Logout</Button>
       </Header>
-      {children}
+      {dashboardContent}
     </Container>
   );
 }
 
 Dashboard.propTypes = {
   children: PropTypes.node.isRequired,
+  history: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({ auth }) => ({ auth });
+const mapStateToProps = ({ profile }) => ({ profile });
 
 export default connect(mapStateToProps, { logoutUser })(Dashboard);

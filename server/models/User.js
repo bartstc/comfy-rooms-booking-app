@@ -18,8 +18,14 @@ const userSchema = new Schema({
     required: true
   },
   role: {
-    type: Number, // 0: standard account, 1: owner (authorized to provide the hotel), 2: admin
+    type: Number,
     default: 0
+    /* ROLES
+      - 0: user
+      - 1: pending registration (after registration, the user can add his hotel offers)
+      - 2: registered, allowed to add hotel offers
+      - 3: admin
+    */
   },
   date: {
     type: Date,

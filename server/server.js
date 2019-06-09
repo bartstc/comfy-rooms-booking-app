@@ -7,9 +7,11 @@ require('./models/User');
 require('./models/Hotel');
 require('./models/Room');
 require('./models/Profile');
+require('./models/AdminProfile');
 
 const users = require('./routes/user');
 const profiles = require('./routes/profile');
+const admin = require('./routes/admin');
 
 const app = express();
 
@@ -24,6 +26,7 @@ require('./services/passport')(passport);
 // Use Routes
 app.use('/api/users', users);
 app.use('/api/profiles', profiles);
+app.use('/api/admin', admin);
 
 mongoose
   .connect(db, { useNewUrlParser: true })

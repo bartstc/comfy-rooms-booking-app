@@ -16,4 +16,4 @@ const adminProfileSchema = new Schema({
   ]
 });
 
-mongoose.model('profiles', adminProfileSchema);
+mongoose.model('adminprofiles', adminProfileSchema);

@@ -6,7 +6,7 @@ export const Choice = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 1.2em;
+  margin-bottom: 2.2em;
   padding: 0 1em;
 `;
 
@@ -15,7 +15,7 @@ export const Title = styled.h2`
   text-transform: uppercase;
   font-weight: ${fontWeight.bold};
   text-align: center;
-  margin: 2.8em 0 1em 0;
+  margin: 2em 0 1em 0;
 
   @media ${device.tablet} {
     font-size: 1.5rem;
@@ -23,7 +23,7 @@ export const Title = styled.h2`
 `;
 
 export const Subtitle = styled.p`
-  font-size: 1rem;
+  font-size: .9rem;
   text-align: center;
   font-weight: ${fontWeight.light};
   margin-bottom: .4em;

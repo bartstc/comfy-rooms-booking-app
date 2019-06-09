@@ -1,27 +1,33 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { Table, AcceptBtn, Empty } from './Requests.styles';
 
-const Requests = () => (
-  <>
-    {/* <Empty>No requests yet.</Empty> */}
+const Requests = ({ requests, handleRegister }) => {
+  if (requests.length === 0) return <Empty>No requests yet.</Empty>;
+
+  return (
     <Table>
       <thead>
         <tr>
           <th>User ID</th>
-          <th>Email</th>
           <th>Register</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>5556dhdhjjsh78</td>
-          <td>test@gmail.com</td>
-          <td><AcceptBtn>Accept</AcceptBtn></td>
-        </tr>
+        {requests.map(({ user }) => (
+          <tr key={user}>
+            <td>{user}</td>
+            <td><AcceptBtn onClick={() => handleRegister(user)}>Accept</AcceptBtn></td>
+          </tr>
+        ))}
       </tbody>
     </Table>
-  </>
-)
+  )
+};
+
+Requests.propTypes = {
+  requests: PropTypes.array,
+  handleRegister: PropTypes.func.isRequired
+};
 
 export default Requests;

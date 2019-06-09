@@ -20,6 +20,7 @@ exports.getProfile = async (req, res) => {
   try {
     if (role === 0) {
       const profile = await Profile.findOne({ user: req.user._id });
+      if (!profile) return res.status(200).json({});
       return res.status(200).json(profile); // return null if doesn't exist
     };
 
@@ -29,7 +30,7 @@ exports.getProfile = async (req, res) => {
 
     if (role === 2) {
       const hotels = await Hotel.find({ owner: req.user._id });
-      return res.status(200).json(hotels);
+      return res.status(200).json({ hotels });
     };
 
     if (role === 3) {

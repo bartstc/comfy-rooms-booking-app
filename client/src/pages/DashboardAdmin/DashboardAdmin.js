@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { registerUser } from '../../modules/profile/profileActions';
 
 import Dashboard from '../../components/Dashboard/Dashboard';
 import Requests from './dashboardAdmin/Requests';
@@ -11,12 +14,28 @@ class AdminDashboard extends Component {
   };
 
   render() {
+    const { auth, history, profile: { profile }, registerUser } = this.props;
+
     return (
-      <Dashboard name="John Doe" history={this.props.history}>
-        <Requests />
+      <Dashboard
+        name={auth.user.fullname}
+        history={history}
+      >
+        <Requests
+          handleRegister={registerUser}
+          requests={profile && profile.requests}
+        />
       </Dashboard>
     );
   }
 };
 
-export default AdminDashboard;
+AdminDashboard.propTypes = {
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  registerUser: PropTypes.func.isRequired
+};
+
+const mapStateToProps = ({ auth, profile }) => ({ auth, profile });
+
+export default connect(mapStateToProps, { registerUser })(AdminDashboard);

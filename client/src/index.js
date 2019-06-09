@@ -20,7 +20,7 @@ import DashboardHotel from './pages/DashboardHotel/DashboardHotel';
 import DashboardAdmin from './pages/DashboardAdmin/DashboardAdmin';
 import NotFound from './pages/NotFound/NotFound';
 
-// Check for token (was added throught login action)
+// CHECK FOR TOKEN (was added throught login action)
 if (localStorage.jwtToken) {
   // Set auth token header auth
   setToken(localStorage.jwtToken);

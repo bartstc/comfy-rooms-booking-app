@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/Spinner/Spinner';
 
 export default (Component, reload = false) => {
   const VerifyRole = (props) => {
-    const { history, auth: { isAuth, user } } = props;
-    const [loading, setLoading] = useState(true);
+    const { history, auth: { isAuth, user }, profile: { profile } } = props;
+    const [authLoading, setLoading] = useState(true);
 
     useEffect(() => {
       if (!isAuth) history.push('/signin');
@@ -17,6 +18,9 @@ export default (Component, reload = false) => {
         - 2: registered, allowed to add hotel offers
         - 3: admin
       */
+      // let profileExists = Object.keys(profile).length > 0;
+      // if (!profileExists) history.push('/create_profile');
+
       if (reload) {
         if (user.role === 0 || user.role === 1) history.push('/user_dashboard');
         if (user.role === 2) history.push('/hotel_dashboard');
@@ -24,14 +28,18 @@ export default (Component, reload = false) => {
       };
 
       setLoading(false);
-    }, [isAuth, user, history]);
+    }, [isAuth, user, history, profile]);
 
-    if (loading && reload) return <Spinner />
+    if (authLoading && reload && !isAuth) return <Spinner />;
 
     return <Component {...props} />
   };
 
-  const mapStateToProps = ({ auth }) => ({ auth });
+  VerifyRole.propTypes = {
+    auth: PropTypes.object.isRequired
+  };
+
+  const mapStateToProps = ({ auth, profile }) => ({ auth, profile });
 
   return connect(mapStateToProps)(VerifyRole);
 };

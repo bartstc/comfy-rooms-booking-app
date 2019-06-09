@@ -12,20 +12,21 @@ exports.createAdminProfile = async (req, res) => {
 };
 
 // Give the user the rights to add his hotel offers
-exports.registerUser = async ({ user, body: { userId } }, res) => {
+exports.registerUser = async ({ user, body: { id } }, res) => {
   try {
-    await AdminProfile.findOneAndUpdate(
-      { user: user._id },
-      { "$pull": { "requests": { user: userId } } }
-    );
+    const adminProfile = await AdminProfile.findOne({ user: user._id });
+    const newRequests = adminProfile.requests.filter(req => req.user.toString() !== id);
+    adminProfile.requests = newRequests;
+    const updatedProfile = await adminProfile.save();
 
     await User.findOneAndUpdate(
-      { _id: userId },
+      { _id: id },
       { role: 2 }
     );
 
-    res.status(200).json({ success: true });
+    res.status(200).json(updatedProfile);
   } catch (err) {
     res.status(400).json({ success: false, err });
+    console.log(err);
   };
 };

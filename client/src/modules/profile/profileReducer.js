@@ -5,7 +5,7 @@ import {
 } from './profileTypes';
 
 const initialState = {
-  profile: {},
+  profile: null,
   loading: false
 };
 
@@ -26,7 +26,7 @@ export default (state = initialState, { type, payload }) => {
     case CLEAR_CURRENT_PROFILE:
       return {
         ...state,
-        profile: null
+        profile: {}
       };
     default:
       return state;

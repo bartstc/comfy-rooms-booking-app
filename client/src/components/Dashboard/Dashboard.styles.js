@@ -10,7 +10,7 @@ export const Container = styled.section`
 
 export const Header = styled.header`
   width: 100%;
-  margin-bottom: 1em;
+  margin-bottom: 1.6em;
   display: flex;
   flex-direction: column;
   align-items: center;

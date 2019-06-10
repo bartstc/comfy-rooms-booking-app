@@ -5,19 +5,17 @@ const User = mongoose.model('users');
 
 // SIGNUP USER
 exports.signupUser = async (req, res) => {
-  const { fullname, email, password } = req.body;
-
   const { errors, isValid } = signupValidation(req.body);
   if (!isValid) return res.status(400).json(errors);
 
-  const user = await User.findOne({ email });
-  if (user) {
-    errors.email = 'Email already exists';
-    return res.status(400).json(errors);
-  };
-
   try {
-    const newUser = await new User({ fullname, email, password }).save();
+    const user = await User.findOne({ email: req.body.email });
+    if (user) {
+      errors.email = 'Email already exists';
+      return res.status(400).json(errors);
+    };
+
+    const newUser = await new User({ ...req.body }).save();
     res.status(200).json(newUser);
   } catch (err) {
     console.log(err);

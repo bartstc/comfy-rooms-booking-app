@@ -1,13 +1,16 @@
 import styled from 'styled-components';
-import { fontWeight, device } from '../../../utils/styles';
+import { fontWeight, device, color } from '../../../utils/styles';
 
 export const Choice = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1em;
+  background: ${color.lightGrey};
+  max-width: 420px;
+  margin: 0 auto;
   margin-bottom: 2.2em;
-  padding: 0 1em;
 `;
 
 export const Title = styled.h2`
@@ -16,6 +19,7 @@ export const Title = styled.h2`
   font-weight: ${fontWeight.bold};
   text-align: center;
   margin: 2em 0 1em 0;
+  padding: 0 1em;
 
   @media ${device.tablet} {
     font-size: 1.5rem;

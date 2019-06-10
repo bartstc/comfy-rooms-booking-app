@@ -1,19 +1,30 @@
 import styled from 'styled-components';
-import { color, fontWeight, device } from '../../../../utils/styles';
+import { color, fontWeight, fontFamily, device } from '../../../../utils/styles';
 
 export const HotelCard = styled.li`
   width: 100%;
-  padding: 1.6em 1em;
+  padding: 1em;
 `;
 
 export const Title = styled.h3`
-  font-size: 1rem;
+  font-size: 1.15rem;
   text-transform: uppercase;
   font-weight: ${fontWeight.regular};
 
   @media ${device.tablet} {
-    font-size: 1.3rem;
+    font-size: 1.45rem;
   }
+`;
+
+export const ToggleBtn = styled.button`
+  width: 100px;
+  height: 28px;
+  border: none;
+  color: ${color.white};
+  background: ${color.grey};
+  margin-bottom: .4em;
+  font-family: ${fontFamily.primary};
+  font-weight: ${fontWeight.bold};
 `;
 
 export const Description = styled.div`
@@ -31,4 +42,8 @@ export const Info = styled.p`
   span {
     color: ${color.grey};
   }
+`;
+
+export const RoomsPanel = styled.div`
+
 `;

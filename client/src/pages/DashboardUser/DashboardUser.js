@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 import Dashboard from '../../components/Dashboard/Dashboard';
 import History from './dashboardUser/History';
@@ -40,7 +39,6 @@ class UserDashboard extends Component {
 
   render() {
     const {
-      profile: { loading, profile },
       history,
       auth: { user: { fullname, role } }
     } = this.props;
@@ -71,6 +69,4 @@ UserDashboard.propTypes = {
   profile: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({ profile }) => ({ profile });
-
-export default connect(mapStateToProps)(UserDashboard);
+export default UserDashboard;

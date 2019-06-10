@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color, fontWeight, fontFamily } from '../../../../../utils/styles';
+import { color, device, fontWeight, fontFamily } from '../../../../../utils/styles';
 
 export const AddBtn = styled.button`
   border: none;
@@ -22,4 +22,12 @@ export const Form = styled.form`
 
 export const Divider = styled.span`
   height: 1.4em;
+`;
+
+export const Limiter = styled.div`
+  width: 290px;
+
+  @media ${device.laptop} {
+    width: 100%;
+  }
 `;

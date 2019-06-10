@@ -7,9 +7,9 @@ import { SET_CURRENT_USER, LOADING_START, LOADING_END } from './authTypes';
 
 export const setCurrentUser = decoded => ({ type: SET_CURRENT_USER, payload: decoded });
 
-const loadingStart = () => ({type: LOADING_START});
+const loadingStart = () => ({ type: LOADING_START });
 
-const loadingEnd = () => ({type: LOADING_END});
+const loadingEnd = () => ({ type: LOADING_END });
 
 // SIGNUP USER
 export const signupUser = (userData, history) => async dispatch => {
@@ -19,10 +19,10 @@ export const signupUser = (userData, history) => async dispatch => {
     dispatch(loadingEnd());
 
     history.push('/signin');
-    dispatch({ type: CLEAR_ERRORS });
+    dispatch(clearErrors());
   } catch (err) {
     dispatch(loadingEnd());
-    dispatch({ type: GET_ERRORS, payload: err.response.data })
+    dispatch({ type: GET_ERRORS, payload: err.response.data });
   };
 };
 
@@ -41,7 +41,7 @@ export const signinUser = userData => async dispatch => {
     const decoded = jwt_decode(token);
     // Set current user
     dispatch(setCurrentUser(decoded));
-    dispatch({ type: CLEAR_ERRORS });
+    dispatch(clearErrors());
   } catch (err) {
     dispatch(loadingEnd());
     dispatch({ type: GET_ERRORS, payload: err.response.data })
@@ -57,3 +57,5 @@ export const logoutUser = () => dispatch => {
   // Set current user to {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
 };
+
+const clearErrors = () => ({ type: CLEAR_ERRORS });

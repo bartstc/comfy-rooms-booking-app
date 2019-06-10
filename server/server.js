@@ -11,6 +11,8 @@ require('./models/AdminProfile');
 
 const users = require('./routes/user');
 const profiles = require('./routes/profile');
+const hotels = require('./routes/hotel');
+const rooms = require('./routes/room');
 const admin = require('./routes/admin');
 
 const app = express();
@@ -26,6 +28,8 @@ require('./services/passport')(passport);
 // Use Routes
 app.use('/api/users', users);
 app.use('/api/profiles', profiles);
+app.use('/api/hotels', hotels);
+app.use('/api/rooms', rooms);
 app.use('/api/admin', admin);
 
 mongoose

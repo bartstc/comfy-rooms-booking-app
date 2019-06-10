@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { facilities, adults, children } from '../../../../../utils/categories';
 
-import { AddBtn, Form, Divider } from './AddRoom.styles';
+import { AddBtn, Form, Divider, Limiter } from './AddRoom.styles';
 
 import Modal from '../../../../../components/Modal/Modal';
 import Button from '../../../../../components/Button/Button';
@@ -19,61 +19,63 @@ const AddRoom = ({
   handleFilter,
   values
 }) => (
-  <>
-    <AddBtn onClick={handleClickOpen}>Add room</AddBtn>
-    <Modal
-      open={open}
-      onClose={handleClickClose}
-      title="Add room"
-    >
-      <Form onSubmit={handleSubmit}>
-        <TextFieldGroup
-          label="Price / night"
-          placeholder="Enter price ..."
-          id="price"
-          name="price"
-          value={values.price}
-          onChange={handleChange}
-        />
-
-        <SelectListGroup
-          name="adults"
-          id="adults"
-          label="Adults"
-          value={values.adults}
-          onChange={handleChange}
-          options={adults}
-        />
-        <SelectListGroup
-          name="children"
-          id="children"
-          label="Children"
-          value={values.children}
-          onChange={handleChange}
-          options={children}
-        />
-        <CollapseCheckbox
-          open={false}
-          title="Facilities"
-          list={facilities}
-          handleFilters={handleFilter}
-          category="facilities"
-        />
-        <Divider />
-        <Button type="submit">Submit</Button>
-      </Form>
-    </Modal>
-  </>
+    <>
+      <AddBtn onClick={handleClickOpen}>Add room</AddBtn>
+      <Modal
+        open={open}
+        onClose={handleClickClose}
+        title="Add room"
+      >
+        <Form onSubmit={handleSubmit}>
+          <TextFieldGroup
+            label="Price / night"
+            placeholder="Enter price ..."
+            id="price"
+            name="price"
+            type="number"
+            value={values.price}
+            onChange={handleChange}
+          />
+          <SelectListGroup
+            name="adults"
+            id="adults"
+            label="Adults"
+            value={values.adults}
+            onChange={handleChange}
+            options={adults}
+          />
+          <SelectListGroup
+            name="children"
+            id="children"
+            label="Children"
+            value={values.children}
+            onChange={handleChange}
+            options={children}
+          />
+          <Limiter>
+            <CollapseCheckbox
+              open={false}
+              title="Facilities"
+              list={facilities}
+              handleFilters={handleFilter}
+              category="facilities"
+            />
+          </Limiter>
+          <Divider />
+          <Button type="submit">Submit</Button>
+        </Form>
+      </Modal>
+    </>
   );
 
-  AddRoom.propTypes = {
-    handleClickClose: PropTypes.func.isRequired,
-    handleClickOpen: PropTypes.func.isRequired,
-    handleChange: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    handleFilter: PropTypes.func.isRequired,
-    open: PropTypes.bool.isRequired,
-    values: PropTypes.object.isRequired
-  };
+AddRoom.propTypes = {
+  handleClickClose: PropTypes.func.isRequired,
+  handleClickOpen: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleFilter: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  values: PropTypes.object.isRequired
+};
 
 export default AddRoom;

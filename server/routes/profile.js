@@ -2,7 +2,6 @@ const { Router } = require('express');
 const router = Router();
 const isAuth = require('../middlewares/isAuth');
 const isUser = require('../middlewares/isDefaultUser');
-const isOwner = require('../middlewares/isOwner');
 
 const profileController = require('../controllers/profile');
 

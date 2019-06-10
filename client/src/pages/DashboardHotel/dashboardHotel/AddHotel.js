@@ -33,6 +33,7 @@ const AddHotel = ({
   values: {
     name,
     city,
+    address,
     contact,
     type,
     stars,
@@ -40,7 +41,8 @@ const AddHotel = ({
     emailTitle,
     emailSubject,
     emailBody
-  }
+  },
+  errors
 }) => (
     <>
       <Button onClick={handleClickOpen}>New hotel</Button>
@@ -57,6 +59,7 @@ const AddHotel = ({
             name="name"
             value={name}
             onChange={handleChange}
+            error={errors.name}
           />
           <TextFieldGroup
             label="City"
@@ -65,6 +68,16 @@ const AddHotel = ({
             name="city"
             value={city}
             onChange={handleChange}
+            error={errors.city}
+          />
+          <TextFieldGroup
+            label="Address"
+            placeholder="Enter address ..."
+            id="address"
+            name="address"
+            value={address}
+            onChange={handleChange}
+            error={errors.address}
           />
           <TextFieldGroup
             label="Contact"
@@ -74,13 +87,14 @@ const AddHotel = ({
             type="number"
             value={contact}
             onChange={handleChange}
+            error={errors.contact}
           />
           <TextAreaFieldGroup
             placeholder="Add description"
             name="description"
             value={description}
             onChange={handleChange}
-          // error={props.errors.text}
+            error={errors.description}
           />
           <SelectListGroup
             name="type"
@@ -89,6 +103,7 @@ const AddHotel = ({
             value={type}
             onChange={handleChange}
             options={types}
+            error={errors.type}
           />
           <SelectListGroup
             name="stars"
@@ -97,6 +112,7 @@ const AddHotel = ({
             value={stars}
             onChange={handleChange}
             options={starsList}
+            error={errors.stars}
           />
           <TextFieldGroup
             label="Email Title"
@@ -105,6 +121,7 @@ const AddHotel = ({
             name="emailTitle"
             value={emailTitle}
             onChange={handleChange}
+            error={errors.emailTitle}
           />
           <TextFieldGroup
             label="Email Subject"
@@ -113,6 +130,7 @@ const AddHotel = ({
             name="emailSubject"
             value={emailSubject}
             onChange={handleChange}
+            error={errors.emailSubject}
           />
           <TextFieldGroup
             label="Email Body"
@@ -121,6 +139,7 @@ const AddHotel = ({
             name="emailBody"
             value={emailBody}
             onChange={handleChange}
+            error={errors.emailBody}
           />
           <Button type="submit">Submit</Button>
         </Form>
@@ -134,7 +153,8 @@ AddHotel.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  values: PropTypes.object.isRequired
+  values: PropTypes.object.isRequired,
+  errors: PropTypes.object
 };
 
 export default AddHotel;

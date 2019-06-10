@@ -14,3 +14,8 @@ export const DeleteBtn = styled.button`
   height: 24px;
   font-family: ${fontFamily.primary};
 `;
+
+export const Warning = styled.p`
+  color: red;
+  line-height: 1.8em;
+`;

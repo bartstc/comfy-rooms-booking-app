@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const roomSchema = require('./Room');
 
 const hotelSchema = new Schema({
   owner: {
@@ -58,10 +59,12 @@ const hotelSchema = new Schema({
     type: String,
     required: true
   },
-  rooms: {
-    type: [Schema.Types.ObjectId],
-    ref: 'rooms'
-  },
+  rooms: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'rooms'
+    }
+  ],
   opinions: [
     {
       fullname: {

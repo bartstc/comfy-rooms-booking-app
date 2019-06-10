@@ -36,6 +36,4 @@ AdminDashboard.propTypes = {
   registerUser: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({ auth, profile }) => ({ auth, profile });
-
-export default connect(mapStateToProps, { registerUser })(AdminDashboard);
+export default connect(null, { registerUser })(AdminDashboard);

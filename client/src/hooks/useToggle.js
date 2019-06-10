@@ -2,12 +2,12 @@ import { useState } from "react";
 
 function useToggle(initialVal = false) {
   // call useState, "reserve piece of state"
-  const [state, setState] = useState(initialVal);
-  const toggle = () => {
-    setState(!state);
+  const [toggle, setState] = useState(initialVal);
+  const setToggle = () => {
+    setState(!toggle);
   };
   // return piece of state and a function to toggle it
-  return [state, toggle];
+  return [toggle, setToggle];
 };
 
 export default useToggle;

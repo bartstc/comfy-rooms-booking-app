@@ -48,13 +48,38 @@ export const askForRegistration = () => async dispatch => {
 export const registerUser = userId => async dispatch => {
   try {
     dispatch(setProfileLoading());
-    const res = await axios.put('/api/admin/register', {id: userId});
+    const res = await axios.put('/api/admin/register', { id: userId });
     dispatch({
       type: GET_PROFILE,
       payload: res.data
     });
   } catch (err) {
     dispatch(emptyProfile());
+  };
+};
+
+// Get hotels (if you are registered)
+export const getHotels = () => async dispatch => {
+  try {
+    dispatch(setProfileLoading());
+    const res = await axios.get('/api/hotels/hotels');
+    dispatch({
+      type: GET_PROFILE,
+      payload: { hotels: res.data }
+    });
+  } catch (err) {
+    dispatch(emptyProfile());
+  };
+};
+
+// Add new hotel
+export const addHotel = hotelData => async dispatch => {
+  try {
+    await axios.post('/api/hotels/hotel', hotelData);
+    dispatch(getHotels()); // Refetch all hotels
+    dispatch(clearErrors());
+  } catch (err) {
+    dispatch({ type: GET_ERRORS, payload: err.response.data })
   };
 };
 
@@ -67,5 +92,5 @@ export const clearCurrentProfile = () => ({ type: CLEAR_CURRENT_PROFILE });
 // Empty profile
 export const emptyProfile = () => ({ type: GET_PROFILE, payload: {} });
 
-// Handle errors
-export const handleErrors = () => ({ type: GET_ERRORS, payload: {} });
+// Clear errors
+const clearErrors = () => ({ type: CLEAR_ERRORS });

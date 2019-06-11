@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import isAfter from 'date-fns/isAfter';
+import { connect } from 'react-redux';
+import { searchForRooms } from '../../modules/rooms/roomsActions';
 
 import Form from './searchForm/Form';
 
 const initState = {
-  destination: 'London',
+  city: '',
   adults: '2',
   children: '0'
 };
 
-const SearchForm = () => {
-  // date state
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+const SearchForm = ({ searchForRooms, history }) => {
+  // date state (check in, check out)
+  const [checkIn, setCheckIn] = useState(new Date());
+  const [checkOut, setCheckOut] = useState(new Date());
 
-  // rest od state
+  // rest of state (city, adults, children)
   const [values, setValues] = useState(initState);
 
   const onChange = e => {
@@ -23,15 +26,15 @@ const SearchForm = () => {
   };
 
   const onDateChange = ({ start, end }) => {
-    start = start || startDate;
-    end = end || endDate;
+    start = start || checkIn;
+    end = end || checkOut;
 
     if (isAfter(start, end)) {
       end = start;
     };
 
-    setStartDate(start);
-    setEndDate(end);
+    setCheckIn(start);
+    setCheckOut(end);
   };
 
   const onDateChangeStart = start => onDateChange({ start });
@@ -40,17 +43,17 @@ const SearchForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(startDate, endDate);
-    console.log(values);
 
-    // handle actions (set search values)
-  }
+    searchForRooms(values, { ...values, checkIn, checkOut });
+    console.log(values);
+    if (history) history.push('/explore');
+  };
 
   return (
     <Form
       handleSubmit={onSubmit}
-      startDate={startDate}
-      endDate={endDate}
+      startDate={checkIn}
+      endDate={checkOut}
       handleDateChangeStart={onDateChangeStart}
       handleDateChangeEnd={onDateChangeEnd}
       handleChange={onChange}
@@ -59,4 +62,8 @@ const SearchForm = () => {
   );
 };
 
-export default SearchForm;
+SearchForm.propTypes = {
+  searchForRooms: PropTypes.func.isRequired
+};
+
+export default connect(null, { searchForRooms })(SearchForm);

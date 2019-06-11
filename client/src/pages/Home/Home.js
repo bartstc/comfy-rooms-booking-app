@@ -13,7 +13,7 @@ class Home extends Component {
       <>
         <Banner />
         <SectionTitle>Choose your destination</SectionTitle>
-        <SearchForm />
+        <SearchForm history={this.props.history} />
         <HighestRated />
         <MostVisited />
       </>

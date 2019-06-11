@@ -9,8 +9,6 @@ import SelectListGroup from '../../Inputs/SelectListGroup/SelectListGroup';
 import DatePicker from '../../Inputs/DatePicker/DatePicker';
 import Button from '../../Button/Button';
 
-
-
 const SearchForm = ({
   handleSubmit,
   startDate,
@@ -26,10 +24,10 @@ const SearchForm = ({
         <TextFieldGroup
           label="Destination:"
           placeholder="Enter city ..."
-          id="destination"
-          name="destination"
+          id="city"
+          name="city"
           narrow
-          value={values.destination}
+          value={values.city}
           onChange={handleChange}
         />
         <DatePicker

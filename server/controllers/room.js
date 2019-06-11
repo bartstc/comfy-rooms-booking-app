@@ -40,3 +40,70 @@ exports.getHotelRooms = async (req, res) => {
     console.log(err);
   };
 };
+
+exports.searchForRooms = async ({ body }, res) => {
+  let args = {};
+
+  for (let key in body) {
+    if (body[key] !== '') args[key] = body[key];
+  };
+
+  try {
+    const rooms = await Room.find(args).populate('hotel').limit(10);
+    res.status(200).json(rooms);
+  } catch (err) {
+    res.status(400).json({ success: false, err });
+    console.log(err);
+  };
+};
+
+exports.filterRooms = async (req, res) => {
+  const { filters, limit, skip, searchData } = req.body;
+  let filterData = {};
+  let searchingData = {};
+
+  // filters {
+  // type: [],
+  // stars: [],
+  // facilities: [],
+  // price: []
+  // }
+  for (let key in filters) {
+    if (filters[key].length > 0) {
+      if (key === 'price') {
+        filterData[key] = {
+          $gte: filters[key][0], // greater than first arg in array of prices
+          $lte: filters[key][1] // lower than ...
+        };
+      } else if (key === 'facilities') {
+        filterData[key] = {
+          $elemMatch: { $in: filters[key] } // if any element in facilities match 
+        };
+      } else {
+        filterData[key] = filters[key];
+      };
+    };
+  };
+
+  // searchData {
+  //   city: '',
+  //   adults: '2',
+  //   children: '0'
+  // }
+  for (let key in searchData) {
+    if (searchData[key] !== '') searchingData[key] = searchData[key];
+  };
+
+  console.log({ ...searchingData, ...filterData });
+
+  try {
+    const rooms = await Room.find({ ...searchingData, ...filterData })
+      .skip(skip)
+      .limit(limit);
+
+    res.status(200).json(rooms);
+  } catch (err) {
+    res.status(400).json({ success: false, err });
+    console.log(err);
+  };
+};

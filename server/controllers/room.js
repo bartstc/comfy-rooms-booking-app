@@ -94,10 +94,9 @@ exports.filterRooms = async (req, res) => {
     if (searchData[key] !== '') searchingData[key] = searchData[key];
   };
 
-  console.log({ ...searchingData, ...filterData });
-
   try {
     const rooms = await Room.find({ ...searchingData, ...filterData })
+      .populate('hotel')
       .skip(skip)
       .limit(limit);
 

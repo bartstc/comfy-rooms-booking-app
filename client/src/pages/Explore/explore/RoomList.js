@@ -4,14 +4,26 @@ import { Rooms, Results } from './RoomList.styles';
 
 import Room from './roomList/Room';
 
-const RoomList = () => {
+const RoomList = ({ rooms, city, adults, children }) => {
+  const isNoCriteria = () => {
+    if (city === '' && adults === '' && children === '') return true;
+    return false;
+  };
+
   return (
+
     <Rooms>
-      <Results>Results for: <span>London, 2 adult(s), 2(children)</span></Results>
-      <Room />
-      <Room />
-      <Room />
-      <Room />
+      {isNoCriteria()
+        ? null
+        : <Results>Results for: <span>
+          {city !== '' && `${city}, `}
+          {adults} adult(s),
+        {` ${children}`} children
+        </span></Results>
+      }
+      {rooms.map(room => (
+        <Room key={room._id} {...room} />
+      ))}
     </Rooms>
   );
 };

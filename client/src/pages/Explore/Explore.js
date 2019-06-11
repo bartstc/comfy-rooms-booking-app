@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { price } from '../../utils/categories';
-import {filterRooms} from '../../modules/rooms/roomsActions';
+import { filterRooms } from '../../modules/rooms/roomsActions';
 
 import { ExploreContainer } from './Explore.styles';
 
 import SearchForm from '../../components/SearchForm/SearchForm';
 import RoomList from './explore/RoomList';
 import Filters from './explore/Filters';
+import Spinner from '../../components/Spinner/Spinner';
 
 const initFilters = {
   type: [],
@@ -24,10 +25,25 @@ const initRestrictions = {
 
 const Explore = ({
   filterRooms,
-  order: {city, adults, children}
+  order,
+  rooms: { rooms, loading }
 }) => {
   const [filters, setFilters] = useState(initFilters);
   const [restrictions, setRestrictions] = useState(initRestrictions);
+
+  useEffect(() => {
+    if (rooms.length === 0) {
+      const { city, adults, children } = order;
+      const searchData = { city, adults, children };
+
+      filterRooms(
+        filters,
+        restrictions.limit,
+        0,
+        searchData
+      );
+    }
+  }, [rooms, order, filters, restrictions, filterRooms]);
 
   const handlePrice = (value) => {
     const data = price;
@@ -58,6 +74,7 @@ const Explore = ({
   };
 
   const showFilteredResults = (filtersArray) => {
+    const { city, adults, children } = order;
     const searchData = { city, adults, children };
 
     filterRooms(
@@ -73,10 +90,11 @@ const Explore = ({
     <>
       <SearchForm />
       <ExploreContainer>
-        <Filters 
-          handleFilters={onFilter}
-        />
-        <RoomList />
+        <Filters handleFilters={onFilter} />
+        {loading
+          ? <Spinner />
+          : <RoomList rooms={rooms} {...order} />
+        }
       </ExploreContainer>
     </>
   );
@@ -84,9 +102,10 @@ const Explore = ({
 
 Explore.propTypes = {
   filterRooms: PropTypes.func.isRequired,
-  order: PropTypes.object.isRequired
+  order: PropTypes.object.isRequired,
+  rooms: PropTypes.object.isRequired
 };
 
-const mapStateToProps = ({order}) => ({order});
+const mapStateToProps = ({ order, rooms }) => ({ order, rooms });
 
-export default connect(mapStateToProps, {filterRooms})(Explore);
+export default connect(mapStateToProps, { filterRooms })(Explore);

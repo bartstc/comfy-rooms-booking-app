@@ -5,7 +5,7 @@ import { ROOMS_LOADING, SET_ROOMS } from './roomsTypes';
 // Search for results
 export const searchForRooms = (searchData, orderData) => async dispatch => {
   try {
-    setSearchLoading();
+    dispatch(setSearchLoading());
     const res = await axios.post('/api/rooms/search', searchData);
     dispatch({
       type: SET_ORDER,
@@ -23,10 +23,11 @@ export const searchForRooms = (searchData, orderData) => async dispatch => {
 // Filter rooms
 export const filterRooms = (filters = [], limit = 10, skip = 0, searchData) => async dispatch => {
   const data = { filters, limit, skip, searchData };
-
+  
   try {
-    setSearchLoading();
+    dispatch(setSearchLoading());
     const res = await axios.post('/api/rooms/filter', data);
+    console.log(res.data);
     dispatch({
       type: SET_ROOMS,
       payload: res.data

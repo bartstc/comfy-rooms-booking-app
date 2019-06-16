@@ -18,7 +18,7 @@ const initState = {
   emailTitle: '',
   emailSubject: '',
   emailBody: '',
-  // images
+  images: []
   // pin
 };
 
@@ -38,9 +38,9 @@ class HotelDashboard extends Component {
 
   onSubmit = async e => {
     e.preventDefault();
-    const { type, stars, name, city, address, contact, description, emailTitle, emailSubject, emailBody } = this.state;
+    const { type, stars, name, city, address, contact, description, emailTitle, emailSubject, emailBody, images } = this.state;
 
-    const hotelData = { type, stars, name, city, address, contact, description, emailTitle, emailSubject, emailBody };
+    const hotelData = { type, stars, name, city, address, contact, description, emailTitle, emailSubject, emailBody, images };
 
     await this.props.addHotel(hotelData);
 
@@ -51,6 +51,8 @@ class HotelDashboard extends Component {
   onClickOpen = () => this.setState({ open: true });
 
   onClickClose = () => this.setState({ open: false });
+
+  onImageUpload = images => this.setState({ images });
 
   render() {
     const { auth, history, profile: { profile }, errors } = this.props;
@@ -66,6 +68,7 @@ class HotelDashboard extends Component {
           handleClickClose={this.onClickClose}
           handleChange={this.onChange}
           handleSubmit={this.onSubmit}
+          handleUpload={this.onImageUpload}
           values={this.state}
           errors={errors}
         />

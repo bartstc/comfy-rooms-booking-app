@@ -8,6 +8,7 @@ import Button from '../../../components/Button/Button';
 import TextAreaFieldGroup from '../../../components/Inputs/TextareaFieldGroup/TextareaFieldGroup';
 import TextFieldGroup from '../../../components/Inputs/TextFieldGroup/TextFieldGroup';
 import SelectListGroup from '../../../components/Inputs/SelectListGroup/SelectListGroup';
+import FileUpload from '../../../components/Inputs/FileUpload/FileUpload';
 
 const types = [
   { label: 'apartment', value: 'apartment' },
@@ -30,6 +31,7 @@ const AddHotel = ({
   handleClickClose,
   handleChange,
   handleSubmit,
+  handleUpload,
   values: {
     name,
     city,
@@ -141,6 +143,9 @@ const AddHotel = ({
             onChange={handleChange}
             error={errors.emailBody}
           />
+          <FileUpload
+            handleUpload={handleUpload}
+          />
           <Button type="submit">Submit</Button>
         </Form>
       </Modal>
@@ -152,6 +157,7 @@ AddHotel.propTypes = {
   handleClickOpen: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  handleUpload: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   values: PropTypes.object.isRequired,
   errors: PropTypes.object

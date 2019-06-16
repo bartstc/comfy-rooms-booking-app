@@ -8,6 +8,7 @@ require('./models/Hotel');
 require('./models/Room');
 require('./models/Profile');
 require('./models/AdminProfile');
+require('./models/Pin');
 
 const users = require('./routes/user');
 const profiles = require('./routes/profile');

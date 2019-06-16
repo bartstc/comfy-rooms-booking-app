@@ -18,8 +18,9 @@ const initState = {
   emailTitle: '',
   emailSubject: '',
   emailBody: '',
-  images: []
-  // pin
+  images: [],
+  longitude: 0,
+  latitude: 0
 };
 
 class HotelDashboard extends Component {
@@ -32,15 +33,33 @@ class HotelDashboard extends Component {
     this.props.getHotels();
   };
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  };
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  onCordsChange = (longitude, latitude) => this.setState({ longitude, latitude });
 
   onSubmit = async e => {
     e.preventDefault();
-    const { type, stars, name, city, address, contact, description, emailTitle, emailSubject, emailBody, images } = this.state;
+    const { type, stars, name, city, address, contact, description, emailTitle, emailSubject, emailBody, images, longitude, latitude } = this.state;
 
-    const hotelData = { type, stars, name, city, address, contact, description, emailTitle, emailSubject, emailBody, images };
+    const hotelData = {
+      type,
+      stars,
+      name,
+      city,
+      address,
+      contact,
+      description,
+      emailTitle,
+      emailSubject,
+      emailBody,
+      images,
+      pin: {
+        longitude,
+        latitude,
+        title: name,
+        description: address
+      }
+    };
 
     await this.props.addHotel(hotelData);
 
@@ -56,6 +75,7 @@ class HotelDashboard extends Component {
 
   render() {
     const { auth, history, profile: { profile }, errors } = this.props;
+    const { longitude, latitude } = this.state;
 
     return (
       <Dashboard name={auth.user.fullname} history={history}>
@@ -67,9 +87,11 @@ class HotelDashboard extends Component {
           handleClickOpen={this.onClickOpen}
           handleClickClose={this.onClickClose}
           handleChange={this.onChange}
+          handleCordsChange={this.onCordsChange}
           handleSubmit={this.onSubmit}
           handleUpload={this.onImageUpload}
           values={this.state}
+          pin={{ longitude, latitude }}
           errors={errors}
         />
       </Dashboard>

@@ -9,6 +9,7 @@ import TextAreaFieldGroup from '../../../components/Inputs/TextareaFieldGroup/Te
 import TextFieldGroup from '../../../components/Inputs/TextFieldGroup/TextFieldGroup';
 import SelectListGroup from '../../../components/Inputs/SelectListGroup/SelectListGroup';
 import FileUpload from '../../../components/Inputs/FileUpload/FileUpload';
+import Map from '../../../components/Map/Map';
 
 const types = [
   { label: 'apartment', value: 'apartment' },
@@ -32,6 +33,8 @@ const AddHotel = ({
   handleChange,
   handleSubmit,
   handleUpload,
+  handleCordsChange,
+  pin,
   values: {
     name,
     city,
@@ -146,6 +149,12 @@ const AddHotel = ({
           <FileUpload
             handleUpload={handleUpload}
           />
+          <Map
+            height="400px"
+            mapStyle="streets"
+            pin={pin}
+            handleCordsChange={handleCordsChange}
+          />
           <Button type="submit">Submit</Button>
         </Form>
       </Modal>
@@ -158,6 +167,7 @@ AddHotel.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleUpload: PropTypes.func.isRequired,
+  handleCordsChange: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   values: PropTypes.object.isRequired,
   errors: PropTypes.object

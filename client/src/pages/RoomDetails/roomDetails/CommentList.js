@@ -1,35 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Comments, Comment, CommentHeader, Rating, UserName, CommentText } from './CommentList.styles';
+import { Section, Warning, Key } from '../RoomDetails.styles';
 
-import { Title, Comments, Comment, CommentHeader, Rating, UserName, CommentText } from './CommentList.styles';
-import { Section } from '../RoomDetails.styles';
-
-const CommentList = () => (
+const CommentList = ({ opinions }) => (
   <Section>
-    <Title>Opinions</Title>
+    <Key>Opinions</Key>
     <Comments>
-      <Comment>
-        <CommentHeader>
-          <Rating>9.0</Rating>
-          <UserName>John Doe</UserName>
-        </CommentHeader>
-        <CommentText>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati.</CommentText>
-      </Comment>
-      <Comment>
-        <CommentHeader>
-          <Rating>9.0</Rating>
-          <UserName>John Doe</UserName>
-        </CommentHeader>
-        <CommentText>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati.</CommentText>
-      </Comment>
-      <Comment>
-        <CommentHeader>
-          <Rating>9.0</Rating>
-          <UserName>John Doe</UserName>
-        </CommentHeader>
-        <CommentText>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati.</CommentText>
-      </Comment>
+      {opinions.length === 0
+        ? <Warning>No opinions.</Warning>
+        : opinions.map(({ fullname, text, rating }) => (
+          <Comment>
+            <CommentHeader>
+              <Rating>{rating}</Rating>
+              <UserName>{fullname}</UserName>
+            </CommentHeader>
+            <CommentText>{text}</CommentText>
+          </Comment>
+        ))
+      }
     </Comments>
   </Section>
 );
+
+CommentList.propTypes = {
+  opinions: PropTypes.array.isRequired
+};
 
 export default CommentList;

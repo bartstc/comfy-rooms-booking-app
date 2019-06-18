@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import ReactMapGL, { NavigationControl, Marker } from 'react-map-gl';
 import PlaceTwoTone from "@material-ui/icons/PlaceTwoTone";
 
@@ -14,9 +15,10 @@ const Map = ({
   mapStyle,
   height,
   pin = null,
-  handleCordsChange
+  handleCordsChange,
+  initViwport
 }) => {
-  const [viewport, setViewport] = useState(INITIAL_VIEWPORT);
+  const [viewport, setViewport] = useState(initViwport || INITIAL_VIEWPORT);
 
   const onMapClick = ({ lngLat, leftButton }) => {
     if (!leftButton) return;
@@ -32,7 +34,7 @@ const Map = ({
         mapStyle={`mapbox://styles/mapbox/${mapStyle}-v9`}
         mapboxApiAccessToken="pk.eyJ1IjoiYmFydHN0YyIsImEiOiJjanVpcnlpeHMxYzJzM3lwZGZsNmlvNTc2In0.xerR67g9x883LTLBNBRV0A"
         onViewportChange={newViewport => setViewport(newViewport)}
-        onClick={onMapClick}
+        onClick={handleCordsChange && onMapClick}
         {...viewport}
       >
         <Navigation>
@@ -63,6 +65,14 @@ const Map = ({
       </ReactMapGL>
     </MapWrapper>
   );
+};
+
+Map.propTyles = {
+  mapStyle: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
+  pin: PropTypes.object,
+  handleCordsChange: PropTypes.func,
+  initViwport: PropTypes.object
 };
 
 export default Map;

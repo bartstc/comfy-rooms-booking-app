@@ -1,7 +1,8 @@
-import { SET_ROOMS, ROOMS_LOADING } from './roomsTypes';
+import { SET_ROOMS, ROOMS_LOADING, GET_ROOM } from './roomsTypes';
 
 const initialState = {
   rooms: [],
+  room: null,
   loading: false
 };
 
@@ -18,6 +19,13 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         loading: true
+      };
+
+    case GET_ROOM:
+      return {
+        ...state,
+        room: payload,
+        loading: false
       };
 
     default:

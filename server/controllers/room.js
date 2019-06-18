@@ -106,3 +106,17 @@ exports.filterRooms = async (req, res) => {
     console.log(err);
   };
 };
+
+exports.getRoom = async (req, res) => {
+  try {
+    const room = await Room.findById(req.params.id)
+      .populate({
+        path: 'hotel',
+        populate: { path: 'pin' }
+      });
+
+    res.status(200).json(room);
+  } catch (err) {
+    console.log(err);
+  };
+};

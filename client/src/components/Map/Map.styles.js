@@ -5,7 +5,7 @@ export const Preview = styled.div`
   position: absolute;
   top: 50px;
   left: 30px;
-  width: 200px;
+  width: 100%;
   height: 100px;
   background: ${color.white};
   display: none;

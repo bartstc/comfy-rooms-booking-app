@@ -34,7 +34,11 @@ app.use('/api/rooms', rooms);
 app.use('/api/admin', admin);
 
 mongoose
-  .connect(db, { useNewUrlParser: true })
+  .connect(db, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  })
   .then(() => {
     app.listen(port);
     console.log('DB connected')

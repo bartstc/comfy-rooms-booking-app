@@ -1,16 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SlickSlider from 'react-slick';
-
 import { Slide } from './Slider.styles';
 
-const slides = [
-  {
-    img: '/images/Showcase.jpg',
-  },
-  {
-    img: '/images/Showcase.jpg',
-  },
-];
+const notAvailable = '/images/not_available.jpg';
 
 const settings = {
   dots: false,
@@ -22,15 +15,21 @@ const settings = {
   autoplay: true
 };
 
-const Slider = () => (
+const Slider = ({ images }) => (
   <SlickSlider {...settings}>
-    {slides.map(item => (
-      <div key={item.img}>
-        <Slide background={item.img}>
-        </Slide>
-      </div>
-    ))}
+    {images.length === 0 
+      ?  <Slide background={notAvailable} />
+      : images.map(({public_id, url}) => (
+        <div key={public_id}>
+          <Slide background={url} />
+        </div>
+      ))
+    }
   </SlickSlider>
 );
+
+Slider.propTypes = {
+  images: PropTypes.array.isRequired
+};
 
 export default Slider;

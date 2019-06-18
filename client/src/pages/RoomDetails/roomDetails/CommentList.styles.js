@@ -1,16 +1,6 @@
 import styled from 'styled-components';
 import { device, color, fontFamily, fontWeight } from '../../../utils/styles';
 
-export const Title = styled.h2`
-  color: ${color.accent};
-  text-transform: uppercase;
-  font-size: .8rem;
-
-  @media ${device.mobileL} {
-    font-size: .9rem;
-  }
-`;
-
 export const Comments = styled.ul`
   max-width: 800px;
 `;

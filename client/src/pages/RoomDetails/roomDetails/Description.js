@@ -1,13 +1,43 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Text, Facilities, Facility } from './Description.styles';
+import { Section, Key, Warning } from '../RoomDetails.styles';
 
-import { Text } from './Description.styles';
-import { Section, Key } from '../RoomDetails.styles';
+const iconClasses = {
+  parking: 'fas fa-parking',
+  freewifi: 'fas fa-wifi',
+  swimmingpool: 'fas fa-swimming-pool',
+  gym: 'fas fa-dumbbell',
+  restaurant: 'fas fa-utensils',
+  airporttransfer: 'fas fa-plane-departure',
+  petsareallowed: 'fas fa-paw',
+  nonsmokingrooms: 'fas fa-smoking-ban',
+  terrace: 'fas fa-umbrella-beach',
+  airconditioning: 'fas fa-wind'
+};
 
-const Description = () => (
+const Description = ({ facilities, description }) => (
   <Section>
     <Key>Description</Key>
-    <Text>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</Text>
+    <Text>{description}</Text>
+    <Key>Facilities</Key>
+    <Facilities>
+      {facilities.length === 0
+        ? <Warning>No facilities</Warning>
+        : facilities.map(item => (
+          <Facility key={item}>
+            <i className={iconClasses[item.replace(/\s/g, "")]}></i>
+            <p>{item}</p>
+          </Facility>
+        ))
+      }
+    </Facilities>
   </Section>
 );
+
+Description.propTypes = {
+  facilities: PropTypes.array,
+  description: PropTypes.string.isRequired
+};
 
 export default Description;

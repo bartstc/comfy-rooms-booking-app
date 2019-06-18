@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color, fontWeight, device } from '../../utils/styles';
+import { color } from '../../utils/styles';
 
 export const DetailsContainer = styled.article`
   padding: 0 .6em;
@@ -17,11 +17,13 @@ export const Section = styled.section`
 
 export const Key = styled.p`
   color: ${color.accent};
-  font-weight: ${fontWeight.bold};
   text-transform: uppercase;
-  font-size: .8rem;
+  font-size: .9rem;
+  padding-right: .6em;
+`;
 
-  @media ${device.mobileL} {
-    font-size: .9rem;
-  }
+export const Warning = styled.p`
+  font-size: 1rem;
+  line-height: 1.9em;
+  text-transform: uppercase;
 `;

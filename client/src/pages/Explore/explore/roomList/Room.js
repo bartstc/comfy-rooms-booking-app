@@ -15,7 +15,7 @@ const Room = ({
     <RoomCard>
       <ImageWrapper>
         <Link to={`/room/${_id}`}>
-          <Image src={images.length > 0 ? images[0] : '/images/Showcase.jpg'} />
+          <Image src={images.length > 0 ? images[0].url : '/images/Showcase.jpg'} />
         </Link>
       </ImageWrapper>
       <Content>

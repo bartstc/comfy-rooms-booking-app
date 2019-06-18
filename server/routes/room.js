@@ -10,5 +10,6 @@ router.post('/room', isAuth, isRegistered, roomController.createRoom);
 router.get('/rooms/:hotelId', isAuth, isRegistered, roomController.getHotelRooms);
 router.post('/search', roomController.searchForRooms);
 router.post('/filter', roomController.filterRooms);
+router.get('/room/:id', roomController.getRoom);
 
 module.exports = router;

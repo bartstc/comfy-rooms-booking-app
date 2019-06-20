@@ -25,3 +25,9 @@ export const Results = styled.h1`
     font-size: 1.3rem;
   }
 `;
+
+export const Warning = styled.p`
+  font-size: 1rem;
+  line-height: 1.9em;
+  text-transform: uppercase;
+`;

@@ -1,11 +1,11 @@
 import { SET_ORDER } from './orderTypes';
 
 const initialState = {
-    checkIn: '',
-    checkOut: '',
-    city: '',
-    adults: '',
-    children: ''
+  checkIn: null,
+  checkOut: null,
+  city: '',
+  adults: '',
+  children: ''
 };
 
 export default (state = initialState, { type, payload }) => {

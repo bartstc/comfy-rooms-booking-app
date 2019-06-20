@@ -117,6 +117,16 @@ exports.getRoom = async (req, res) => {
 
     res.status(200).json(room);
   } catch (err) {
+    res.status(400).json({ success: false, err });
+    console.log(err);
+  };
+};
+
+exports.removeRoom = async ({ params: { id } }, res) => {
+  try {
+    await Room.findOneAndDelete({ _id: id });
+  } catch (err) {
+    res.status(400).json({ success: false, err });
     console.log(err);
   };
 };

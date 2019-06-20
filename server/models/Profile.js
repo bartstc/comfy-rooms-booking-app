@@ -12,6 +12,10 @@ const profileSchema = new Schema({
         type: Boolean,
         default: false
       },
+      paid: {
+        type: Boolean,
+        default: false
+      },
       hotelName: {
         type: String,
         required: true

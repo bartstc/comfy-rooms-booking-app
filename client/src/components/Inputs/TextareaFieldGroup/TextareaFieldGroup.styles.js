@@ -26,7 +26,7 @@ export const Textarea = styled.textarea`
   width: 290px;
   min-height: 100px;
   background: ${color.lightGrey};
-  font-family: ${fontFamily.secondary};
+  font-family: ${fontFamily.primary};
   font-size: 1.1rem;
   padding: .8em;
   border: none;

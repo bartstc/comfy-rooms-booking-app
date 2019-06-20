@@ -14,7 +14,8 @@ const Header = ({
   votes,
   price,
   adults,
-  children
+  children,
+  handleOpenModal
 }) => (
     <HeaderWrapper>
       <Wrapper>
@@ -24,7 +25,7 @@ const Header = ({
           {Array.from(Array(stars)).map((icon, i) => <i key={i} className="fas fa-star"></i>)}
         </Icons>
         <Divider />
-        <Button>Order</Button>
+        <Button onClick={handleOpenModal}>Order</Button>
       </Wrapper>
       <Wrapper>
         <HeaderInfo>
@@ -55,7 +56,8 @@ Header.propTypes = {
   votes: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   adults: PropTypes.number.isRequired,
-  children: PropTypes.number.isRequired
+  children: PropTypes.number.isRequired,
+  handleOpenModal: PropTypes.func.isRequired
 };
 
 export default Header;

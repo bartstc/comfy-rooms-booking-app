@@ -9,5 +9,6 @@ const profileController = require('../controllers/profile');
 router.get('/profile', isAuth, profileController.getProfile);
 router.post('/user_profile', isAuth, isUser, profileController.createUserProfile);
 router.put('/registration', isAuth, isUser, profileController.askForRegistration);
+router.put('/order', isAuth, isUser, profileController.submitOrder);
 
 module.exports = router;

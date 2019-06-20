@@ -1,7 +1,5 @@
 import React from 'react';
-
-import { Rooms, Results } from './RoomList.styles';
-
+import { Rooms, Results, Warning } from './RoomList.styles';
 import Room from './roomList/Room';
 
 const RoomList = ({ rooms, city, adults, children }) => {
@@ -24,6 +22,7 @@ const RoomList = ({ rooms, city, adults, children }) => {
       {rooms.map(room => (
         <Room key={room._id} {...room} />
       ))}
+      {rooms.length === 0 && <Warning>No results</Warning>}
     </Rooms>
   );
 };

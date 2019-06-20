@@ -42,8 +42,8 @@ const Explore = ({
         0,
         searchData
       );
-    }
-  }, [rooms, order, filters, restrictions, filterRooms]);
+    };
+  }, [order, filters, restrictions, filterRooms]);
 
   const handlePrice = (value) => {
     const data = price;

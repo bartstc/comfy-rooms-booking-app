@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { HotelCard, Title, Info, Description, ToggleBtn } from './Hotel.styles';
 import useToggle from '../../../../hooks/useToggle';
 import axios from 'axios';
@@ -18,12 +19,10 @@ const Hotel = ({
   address,
   city,
   contact,
-  description,
   emailTitle,
   emailSubject,
   emailBody,
   name,
-  opinions,
   rating,
   stars,
   type,
@@ -70,6 +69,11 @@ const Hotel = ({
     setRooms(res.data);
   };
 
+  const removeRoom = async id => {
+    await axios.delete(`/api/rooms/room/${id}`);
+    fetchRooms();
+  };
+
   const onClickOpen = () => setOpen(true);
 
   const onClickClose = () => setOpen(false);
@@ -97,6 +101,7 @@ const Hotel = ({
           <Rooms
             id={_id}
             rooms={rooms}
+            handleRemoveRoom={removeRoom}
           />
           <AddRoom
             open={open}
@@ -111,6 +116,20 @@ const Hotel = ({
       }
     </HotelCard>
   );
+};
+
+Hotel.propTypes = {
+  address: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  contact: PropTypes.number.isRequired,
+  emailTitle: PropTypes.string.isRequired,
+  emailSubject: PropTypes.string.isRequired,
+  emailBody: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  stars: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired
 };
 
 export default Hotel;

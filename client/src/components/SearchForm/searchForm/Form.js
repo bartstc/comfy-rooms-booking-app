@@ -36,7 +36,7 @@ const SearchForm = ({
           startDate={startDate}
           endDate={endDate}
           onChange={handleDateChangeStart}
-          label="Date:"
+          label="Check in:"
           id="date"
           name="date"
           narrow
@@ -47,7 +47,7 @@ const SearchForm = ({
           startDate={startDate}
           endDate={endDate}
           onChange={handleDateChangeEnd}
-          label="Date:"
+          label="Check out:"
           id="date"
           name="date"
           narrow

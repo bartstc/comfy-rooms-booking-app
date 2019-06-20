@@ -59,3 +59,28 @@ exports.askForRegistration = async (req, res) => {
     res.status(400).json({ success: false, err });
   };
 };
+
+exports.submitOrder = async (req, res) => {
+  const { name, address, contact, city, checkIn, checkOut } = req.body;
+
+  try {
+    const newOrder = {
+      hotelName: name,
+      city,
+      address,
+      contact,
+      checkIn,
+      checkOut
+    };
+
+    await Profile.findOneAndUpdate(
+      { user: req.user._id },
+      { $push: { history: newOrder } },
+      { new: true }
+    );
+
+    res.status(200).json({ success: true });
+  } catch (err) {
+    res.status(400).json({ success: false, err });
+  };
+};

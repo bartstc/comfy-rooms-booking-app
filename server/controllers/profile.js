@@ -106,6 +106,35 @@ exports.handlePayment = async (req, res) => {
     res.status(200).json({ success: true });
   } catch (err) {
     res.status(400).json({ success: false, err });
-    console.log(err);
+  };
+};
+
+exports.addOpinion = async (req, res) => {
+  const { hotelName, orderId, text, rating } = req.body;
+
+  const newOpinion = {
+    fullname: req.user.fullname,
+    text,
+    rating
+  };
+
+  try {
+    const hotel = await Hotel.findOne({ name: hotelName });
+
+    const updatedRating = ((hotel.rating * hotel.opinions.length) + parseInt(rating, 10)) / (hotel.opinions.length + 1);
+
+    hotel.rating = updatedRating;
+    hotel.opinions.push(newOpinion);
+
+    await hotel.save();
+
+    await Profile.updateOne(
+      { user: req.user._id, "history._id": orderId },
+      { $set: { "history.$.rated": true } }
+    );
+
+    res.status(200).json({ success: true });
+  } catch (err) {
+    res.status(400).json({ success: false, err });
   };
 };

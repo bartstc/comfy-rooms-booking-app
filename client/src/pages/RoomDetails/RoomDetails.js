@@ -109,7 +109,7 @@ class RoomDetails extends Component {
               city={room.city}
               address={room.hotel.address}
               stars={room.stars}
-              rating={room.hotel.rating}
+              rating={Math.round(room.hotel.rating * 10) / 10}
               votes={room.hotel.opinions.length}
               price={room.price}
               adults={room.adults}

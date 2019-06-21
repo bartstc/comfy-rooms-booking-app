@@ -34,6 +34,7 @@ export const CommentText = styled.p`
   font-weight: ${fontWeight.light};
   font-size: .9rem;
   line-height: 1.5em;
+  margin-top: .25em;
 
   @media ${device.mobileL} {
     font-size: 1.1rem;

@@ -2,13 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import StripeCheckout from 'react-stripe-checkout';
+
 import { HistoryWrapper, Table, Empty, Btn } from './History.styles';
 
-const History = ({ handleClickOpen, handlePayment, history }) => {
-  const handleOpen = (id) => {
-    handleClickOpen(id);
-  };
+import AddComment from './AddComment';
 
+const History = ({
+  handleClickOpen,
+  handleClickClose,
+  handlePayment,
+  addOpinion,
+  history,
+  open,
+  hotelName,
+  orderId
+}) => {
   return (
     <HistoryWrapper>
       {history.length === 0
@@ -35,7 +43,11 @@ const History = ({ handleClickOpen, handlePayment, history }) => {
                 <td>{moment(checkOut).format('MMMM Do YYYY')}</td>
                 <td>{total} $</td>
                 <td className="btn">
-                  <Btn onClick={() => handleOpen('111')}>Add</Btn>
+                  <Btn
+                    onClick={() => handleClickOpen(hotelName, _id)}
+                    grayedOut={rated || !paid}
+                    disabled={rated || !paid}
+                  >{rated ? 'Rated' : 'Add'}</Btn>
                 </td>
                 <td className="btn">
                   <StripeCheckout
@@ -52,7 +64,11 @@ const History = ({ handleClickOpen, handlePayment, history }) => {
                     // publishable key
                     stripeKey="pk_test_EmXEG0tiESh8UILMxSIieKCf00pi77nUtH"
                   >
-                    <Btn grayedOut={paid} disabled={paid}>{paid ? 'Paid' : 'Payment'}</Btn>
+                    <Btn
+                      grayedOut={paid}
+                      disabled={paid}
+                    >
+                      {paid ? 'Paid' : 'Payment'}</Btn>
                   </StripeCheckout>
                 </td>
               </tr>
@@ -60,13 +76,26 @@ const History = ({ handleClickOpen, handlePayment, history }) => {
           </tbody>
         </Table>
       }
+      <AddComment
+        handleClose={handleClickClose}
+        handleAddOpinion={addOpinion}
+        open={open}
+        hotelName={hotelName}
+        orderId={orderId}
+      />
     </HistoryWrapper>
   );
 };
 
 History.propTypes = {
   handleClickOpen: PropTypes.func.isRequired,
-  handlePayment: PropTypes.func.isRequired
+  handleClickClose: PropTypes.func.isRequired,
+  handlePayment: PropTypes.func.isRequired,
+  addOpinion: PropTypes.func.isRequired,
+  history: PropTypes.array,
+  open: PropTypes.bool.isRequired,
+  hotelName: PropTypes.string.isRequired,
+  orderId: PropTypes.string.isRequired
 };
 
 export default History;

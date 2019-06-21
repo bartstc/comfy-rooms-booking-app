@@ -9,10 +9,10 @@ const CommentList = ({ opinions }) => (
     <Comments>
       {opinions.length === 0
         ? <Warning>No opinions.</Warning>
-        : opinions.map(({ fullname, text, rating }) => (
-          <Comment>
+        : opinions.map(({ _id, fullname, text, rating }) => (
+          <Comment key={_id}>
             <CommentHeader>
-              <Rating>{rating}</Rating>
+              <Rating>{rating === 10 ? rating : `${rating}.0`}</Rating>
               <UserName>{fullname}</UserName>
             </CommentHeader>
             <CommentText>{text}</CommentText>

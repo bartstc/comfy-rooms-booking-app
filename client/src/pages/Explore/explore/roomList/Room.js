@@ -30,7 +30,7 @@ const Room = ({
         <WrapperRight>
           {rating === 0
             ? <Info>No ratings</Info>
-            : <Info><span>{rating}</span> ({opinions.length} votes)</Info>
+            : <Info><span>{Math.round(rating * 10) / 10}</span> ({opinions.length} votes)</Info>
           }
           <Info><span>$ {price}</span> / night</Info>
         </WrapperRight>

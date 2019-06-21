@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { handlePayment } from '../../modules/profile/profileActions';
 
 import Dashboard from '../../components/Dashboard/Dashboard';
 import History from './dashboardUser/History';
 import AddComment from './dashboardUser/AddComment';
+import Spinner from '../../components/Spinner/Spinner';
 
 class UserDashboard extends Component {
   state = {
@@ -40,15 +43,26 @@ class UserDashboard extends Component {
   render() {
     const {
       history,
-      auth: { user: { fullname, role } }
+      profile: { loading, profile },
+      auth: { user: { fullname, role } },
+      handlePayment
     } = this.props;
+
+    console.log(this.props.profile)
 
     return (
       <Dashboard name={fullname} history={history}>
         {(role === 1)
           ? <p>Registration in progress. Please be patient.</p>
           : <>
-            <History handleClickOpen={this.onClickOpen} />
+            {loading
+              ? <Spinner />
+              : <History
+                handleClickOpen={this.onClickOpen}
+                history={profile && profile.history}
+                handlePayment={handlePayment}
+              />
+            }
             <AddComment
               handleClose={this.onClickClose}
               handleChange={this.onChange}
@@ -58,7 +72,6 @@ class UserDashboard extends Component {
             />
           </>
         }
-
       </Dashboard>
     );
   }
@@ -69,4 +82,4 @@ UserDashboard.propTypes = {
   profile: PropTypes.object.isRequired
 };
 
-export default UserDashboard;
+export default connect(null, {handlePayment})(UserDashboard);

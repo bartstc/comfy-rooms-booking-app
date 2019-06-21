@@ -10,5 +10,6 @@ router.get('/profile', isAuth, profileController.getProfile);
 router.post('/user_profile', isAuth, isUser, profileController.createUserProfile);
 router.put('/registration', isAuth, isUser, profileController.askForRegistration);
 router.put('/order', isAuth, isUser, profileController.submitOrder);
+router.put('/payment', isAuth, isUser, profileController.handlePayment);
 
 module.exports = router;

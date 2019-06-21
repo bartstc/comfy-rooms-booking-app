@@ -83,6 +83,16 @@ export const addHotel = hotelData => async dispatch => {
   };
 };
 
+// Handle payment by stripe
+export const handlePayment = paymentData => async dispatch => {
+  try {
+    await axios.put('/api/profiles/payment', paymentData);
+    dispatch(getCurrentProfile());
+  } catch (err) {
+    console.log(err);
+  };
+};
+
 // Profile loading
 export const setProfileLoading = () => ({ type: PROFILE_LOADING });
 

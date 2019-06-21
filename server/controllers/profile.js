@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
+const stripe = require('stripe')(keys.stripeSecretKey);
 const Profile = mongoose.model('profiles');
 const Hotel = mongoose.model('hotels');
 const AdminProfile = mongoose.model('adminprofiles');
@@ -61,7 +62,7 @@ exports.askForRegistration = async (req, res) => {
 };
 
 exports.submitOrder = async (req, res) => {
-  const { name, address, contact, city, checkIn, checkOut } = req.body;
+  const { name, address, contact, city, total, checkIn, checkOut } = req.body;
 
   try {
     const newOrder = {
@@ -69,6 +70,7 @@ exports.submitOrder = async (req, res) => {
       city,
       address,
       contact,
+      total,
       checkIn,
       checkOut
     };
@@ -82,5 +84,28 @@ exports.submitOrder = async (req, res) => {
     res.status(200).json({ success: true });
   } catch (err) {
     res.status(400).json({ success: false, err });
+  };
+};
+
+exports.handlePayment = async (req, res) => {
+  const { total, token, orderId } = req.body;
+
+  try {
+    await stripe.charges.create({
+      amount: total * 100,
+      currency: 'usd',
+      description: `To pay: ${total}`,
+      source: token.id
+    });
+
+    await Profile.updateOne(
+      { user: req.user._id, "history._id": orderId },
+      { $set: { "history.$.paid": true } }
+    );
+
+    res.status(200).json({ success: true });
+  } catch (err) {
+    res.status(400).json({ success: false, err });
+    console.log(err);
   };
 };

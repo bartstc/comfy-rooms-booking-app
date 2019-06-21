@@ -11,14 +11,17 @@ export const Empty = styled.p`
 
 export const Table = styled.table`
   ${tableStyles};
+  td.btn {
+    padding: 0;
+  }
 `;
 
-export const CommentBtn = styled.button`
+export const Btn = styled.button`
   border: none;
-  background: ${color.accent};
+  background: ${props => props.grayedOut ? color.grey : color.accent};
   font-weight: ${fontWeight.bold};
   color: ${color.white};
   width: 100%;
-  height: 24px;
+  height: 28px;
   font-family: ${fontFamily.primary};
 `;

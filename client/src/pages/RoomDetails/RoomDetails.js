@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { getRoom } from '../../modules/rooms/roomsActions';
 import { DetailsContainer } from './RoomDetails.styles';
@@ -43,15 +44,22 @@ class RoomDetails extends Component {
 
   onSubmit = async e => {
     e.preventDefault();
-    const { hotel: { name, address, contact }, city } = this.props.rooms.room;
+    const { hotel: { name, address, contact }, city, price } = this.props.rooms.room;
     const { order } = this.props;
     const { checkIn, checkOut } = this.state;
+
+    const start = moment(order.checkIn ? order.checkIn : checkIn);
+    const end = moment(order.checkOut ? order.checkOut : checkOut);
+
+    //Difference in number of days
+    const days = moment.duration(end.diff(start)).asDays() + 1;
 
     const orderData = {
       name,
       address,
       contact,
       city,
+      total: Math.round(days * price),
       checkIn: order.checkIn || checkIn,
       checkOut: order.checkOut || checkOut
     };
@@ -68,7 +76,7 @@ class RoomDetails extends Component {
 
   render() {
     const { room, loading } = this.props.rooms;
-    const { order } = this.props;
+    const { order, auth } = this.props;
     const { checkIn, checkOut, open, sending } = this.state;
 
     return (
@@ -79,6 +87,7 @@ class RoomDetails extends Component {
             <Order
               open={open}
               loading={sending}
+              isAuth={auth.isAuth}
               handleSubmit={this.onSubmit}
               startDate={checkIn}
               endDate={checkOut}
@@ -136,9 +145,10 @@ class RoomDetails extends Component {
 
 RoomDetails.propTypes = {
   rooms: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
   getRoom: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({ rooms, order }) => ({ rooms, order });
+const mapStateToProps = ({ rooms, order, auth }) => ({ rooms, order, auth });
 
 export default connect(mapStateToProps, { getRoom })(RoomDetails);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { types, stars, price, facilities } from '../../../utils/categories';
 
 import { FilterList, Title } from './Filters.styles';
@@ -41,5 +42,9 @@ const Filters = ({
     />
   </FilterList>
 );
+
+Filters.propTypes = {
+  handleFilters: PropTypes.func.isRequired
+};
 
 export default Filters;

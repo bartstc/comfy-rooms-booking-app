@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { RoomCard, ImageWrapper, Image, Content, WrapperLeft, WrapperRight, Icons, Type, Info, Location, Name } from './Room.styles';
@@ -37,6 +38,15 @@ const Room = ({
       </Content>
     </RoomCard>
   );
+};
+
+Room.propTypes = {
+  _id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  stars: PropTypes.number.isRequired,
+  price: PropTypes.number.isRequired,
+  hotel: PropTypes.object.isRequired
 };
 
 export default Room;

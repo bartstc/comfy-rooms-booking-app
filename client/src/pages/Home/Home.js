@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import { SectionTitle } from './Home.styles';
 
@@ -8,14 +8,14 @@ import HighestRated from './home/HighestRated';
 import MostVisited from './home/MostVisited';
 
 class Home extends Component {
-  render () {
+  render() {
     return (
       <>
         <Banner />
         <SectionTitle>Choose your destination</SectionTitle>
         <SearchForm history={this.props.history} />
         <HighestRated />
-        <MostVisited />
+        {/* <MostVisited /> */}
       </>
     );
   }

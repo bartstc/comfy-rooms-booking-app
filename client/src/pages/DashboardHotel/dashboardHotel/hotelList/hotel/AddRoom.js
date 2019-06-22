@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { facilities, adults, children } from '../../../../../utils/categories';
 
 import { AddBtn, Form, Divider, Limiter } from './AddRoom.styles';
@@ -10,46 +11,82 @@ import TextFieldGroup from '../../../../../components/Inputs/TextFieldGroup/Text
 import SelectListGroup from '../../../../../components/Inputs/SelectListGroup/SelectListGroup';
 import CollapseCheckbox from '../../../../../components/Inputs/CollapseCheckbox/CollapseCheckbox';
 
+const initState = {
+  facilities: [],
+  price: '',
+  adults: '1',
+  children: '0'
+};
+
 const AddRoom = ({
-  open,
-  handleClickOpen,
-  handleClickClose,
-  handleChange,
-  handleSubmit,
-  handleFilter,
-  values
-}) => (
+  hotelId,
+  type,
+  city,
+  stars,
+  fetchRooms
+}) => {
+  const [state, setState] = useState(initState);
+  const [open, setOpen] = useState(false);
+
+  const onClickOpen = () => setOpen(true);
+
+  const onClickClose = () => setOpen(false);
+
+  const onChange = e => {
+    setState({ ...state, [e.target.name]: e.target.value })
+  };
+
+  const onFilter = (facilities, category) => setState({ ...state, facilities });
+
+  const onSubmit = async e => {
+    e.preventDefault();
+
+    const roomData = {
+      hotelId,
+      type,
+      city,
+      stars,
+      ...state
+    };
+
+    await axios.post('/api/rooms/room', roomData);
+    onClickClose();
+    fetchRooms(); // Refetch rooms data
+    setState(initState);
+  };
+
+  return (
     <>
-      <AddBtn onClick={handleClickOpen}>Add room</AddBtn>
+      <AddBtn onClick={onClickOpen}>Add room</AddBtn>
       <Modal
         open={open}
-        onClose={handleClickClose}
+        onClose={onClickClose}
         title="Add room"
       >
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={onSubmit}>
           <TextFieldGroup
             label="Price / night"
             placeholder="Enter price ..."
             id="price"
             name="price"
             type="number"
-            value={values.price}
-            onChange={handleChange}
+            value={state.price}
+            onChange={onChange}
           />
           <SelectListGroup
             name="adults"
             id="adults"
             label="Adults"
-            value={values.adults}
-            onChange={handleChange}
+            value={state.adults}
+            onChange={onChange}
             options={adults}
           />
           <SelectListGroup
             name="children"
             id="children"
             label="Children"
-            value={values.children}
-            onChange={handleChange}
+            value={state.children}
+            onChange={onChange}
             options={children}
           />
           <Limiter>
@@ -57,7 +94,7 @@ const AddRoom = ({
               open={false}
               title="Facilities"
               list={facilities}
-              handleFilters={handleFilter}
+              handleFilters={onFilter}
               category="facilities"
             />
           </Limiter>
@@ -66,16 +103,15 @@ const AddRoom = ({
         </Form>
       </Modal>
     </>
-  );
+  )
+};
 
 AddRoom.propTypes = {
-  handleClickClose: PropTypes.func.isRequired,
-  handleClickOpen: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  handleFilter: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  values: PropTypes.object.isRequired
+  hotelId: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  stars: PropTypes.number.isRequired,
+  fetchRooms: PropTypes.func.isRequired
 };
 
 export default AddRoom;

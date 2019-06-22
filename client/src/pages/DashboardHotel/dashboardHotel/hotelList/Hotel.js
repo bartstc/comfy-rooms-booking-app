@@ -8,13 +8,6 @@ import Rooms from './hotel/Rooms';
 import AddRoom from './hotel/AddRoom';
 import Spinner from '../../../../components/Spinner/Spinner';
 
-const initState = {
-  facilities: [],
-  price: '',
-  adults: '1',
-  children: '0'
-};
-
 const Hotel = ({
   address,
   city,
@@ -29,33 +22,8 @@ const Hotel = ({
   _id
 }) => {
   const [toggle, setToggle] = useToggle();
-  const [state, setState] = useState(initState);
-  const [open, setOpen] = useState(false);
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const onFilter = (facilities, category) => setState({ ...state, facilities });
-
-  const onChange = e => {
-    setState({ ...state, [e.target.name]: e.target.value })
-  };
-
-  const onAddRoomSubmit = async e => {
-    e.preventDefault();
-
-    const roomData = {
-      hotelId: _id,
-      type,
-      city,
-      stars,
-      ...state
-    };
-
-    await axios.post('/api/rooms/room', roomData);
-    onClickClose();
-    fetchRooms(); // Refetch rooms data
-    setState(initState);
-  };
 
   const submitFetchRooms = () => { // Show rooms panel and fetch rooms
     onToggle();
@@ -73,10 +41,6 @@ const Hotel = ({
     await axios.delete(`/api/rooms/room/${id}`);
     fetchRooms();
   };
-
-  const onClickOpen = () => setOpen(true);
-
-  const onClickClose = () => setOpen(false);
 
   const onToggle = () => setToggle();
 
@@ -104,13 +68,11 @@ const Hotel = ({
             handleRemoveRoom={removeRoom}
           />
           <AddRoom
-            open={open}
-            handleClickOpen={onClickOpen}
-            handleClickClose={onClickClose}
-            handleChange={onChange}
-            handleSubmit={onAddRoomSubmit}
-            values={state}
-            handleFilter={onFilter}
+            hotelId={_id}
+            city={city}
+            type={type}
+            stars={stars}
+            fetchRooms={fetchRooms}
           />
         </>
       }

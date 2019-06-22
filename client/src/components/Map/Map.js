@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactMapGL, { NavigationControl, Marker } from 'react-map-gl';
 import PlaceTwoTone from "@material-ui/icons/PlaceTwoTone";
 
-import { MapWrapper, Navigation, Preview, PinWrapper } from './Map.styles';
+import { MapWrapper, Navigation, Popup, PinWrapper, Image, Info, Title, Desc } from './Map.styles';
 
 const INITIAL_VIEWPORT = {
   latitude: 37.7577,
@@ -55,9 +55,13 @@ const Map = ({
                 style={{ fontSize: '40px', color: 'gold' }}
               />
               {pin.title && (
-                <Preview>
-
-                </Preview>
+                <Popup>
+                  <Image src={pin.image}></Image>
+                  <Info>
+                    <Title>{pin.title}</Title>
+                    <Desc>{pin.description}</Desc>
+                  </Info>
+                </Popup>
               )}
             </Marker>
           </PinWrapper>

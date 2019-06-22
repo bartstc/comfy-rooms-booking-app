@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addHotel } from '../../../modules/profile/profileActions';
 
 import { Form } from './AddHotel.styles';
 
@@ -26,44 +28,87 @@ const starsList = [
   { label: '5', value: 5 },
 ];
 
+const initState = {
+  type: 'apartment',
+  stars: '1',
+  name: '',
+  city: '',
+  address: '',
+  contact: '',
+  description: '',
+  emailTitle: '',
+  emailSubject: '',
+  emailBody: '',
+  images: [],
+  longitude: 0,
+  latitude: 0,
+  open: false
+};
+
 const AddHotel = ({
-  open,
-  handleClickOpen,
-  handleClickClose,
-  handleChange,
-  handleSubmit,
-  handleUpload,
-  handleCordsChange,
-  pin,
-  values: {
-    name,
-    city,
-    address,
-    contact,
-    type,
-    stars,
-    description,
-    emailTitle,
-    emailSubject,
-    emailBody
-  },
-  errors
-}) => (
+  errors,
+  addHotel
+}) => {
+  const [state, setState] = useState(initState);
+
+  const onChange = e => setState({ ...state, [e.target.name]: e.target.value });
+
+  const onCordsChange = (longitude, latitude) => setState({ ...state, longitude, latitude });
+
+  const onImageUpload = images => setState({ ...state, images });
+
+  const onClickOpen = () => setState({ ...state, open: true });
+
+  const onClickClose = () => setState({ ...state, open: false });
+
+  const onSubmit = async e => {
+    e.preventDefault();
+    const { type, stars, name, city, address, contact, description, emailTitle, emailSubject, emailBody, images, longitude, latitude } = state;
+
+    const hotelData = {
+      type,
+      stars,
+      name,
+      city,
+      address,
+      contact,
+      description,
+      emailTitle,
+      emailSubject,
+      emailBody,
+      images,
+      pin: {
+        longitude,
+        latitude,
+        title: name,
+        description: address
+      }
+    };
+
+    await addHotel(hotelData);
+
+    if (!Object.keys(errors).length > 0) // if error obj is empty
+      setState({ ...initState });
+  };
+
+  const { type, stars, name, city, address, contact, description, emailTitle, emailSubject, emailBody, longitude, latitude, open } = state;
+
+  return (
     <>
-      <Button onClick={handleClickOpen}>New hotel</Button>
+      <Button onClick={onClickOpen}>New hotel</Button>
       <Modal
         open={open}
-        onClose={handleClickClose}
+        onClose={onClickClose}
         title="Add hotel"
       >
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={onSubmit}>
           <TextFieldGroup
             label="Name"
             placeholder="Enter hotel name ..."
             id="name"
             name="name"
             value={name}
-            onChange={handleChange}
+            onChange={onChange}
             error={errors.name}
           />
           <TextFieldGroup
@@ -72,7 +117,7 @@ const AddHotel = ({
             id="city"
             name="city"
             value={city}
-            onChange={handleChange}
+            onChange={onChange}
             error={errors.city}
           />
           <TextFieldGroup
@@ -81,7 +126,7 @@ const AddHotel = ({
             id="address"
             name="address"
             value={address}
-            onChange={handleChange}
+            onChange={onChange}
             error={errors.address}
           />
           <TextFieldGroup
@@ -91,14 +136,14 @@ const AddHotel = ({
             name="contact"
             type="number"
             value={contact}
-            onChange={handleChange}
+            onChange={onChange}
             error={errors.contact}
           />
           <TextAreaFieldGroup
             placeholder="Add description"
             name="description"
             value={description}
-            onChange={handleChange}
+            onChange={onChange}
             error={errors.description}
           />
           <SelectListGroup
@@ -106,7 +151,7 @@ const AddHotel = ({
             id="type"
             label="Type"
             value={type}
-            onChange={handleChange}
+            onChange={onChange}
             options={types}
             error={errors.type}
           />
@@ -115,7 +160,7 @@ const AddHotel = ({
             id="stars"
             label="Stars"
             value={stars}
-            onChange={handleChange}
+            onChange={onChange}
             options={starsList}
             error={errors.stars}
           />
@@ -125,7 +170,7 @@ const AddHotel = ({
             id="emailTitle"
             name="emailTitle"
             value={emailTitle}
-            onChange={handleChange}
+            onChange={onChange}
             error={errors.emailTitle}
           />
           <TextFieldGroup
@@ -134,7 +179,7 @@ const AddHotel = ({
             id="emailSubject"
             name="emailSubject"
             value={emailSubject}
-            onChange={handleChange}
+            onChange={onChange}
             error={errors.emailSubject}
           />
           <TextFieldGroup
@@ -143,34 +188,30 @@ const AddHotel = ({
             id="emailBody"
             name="emailBody"
             value={emailBody}
-            onChange={handleChange}
+            onChange={onChange}
             error={errors.emailBody}
           />
           <FileUpload
-            handleUpload={handleUpload}
+            handleUpload={onImageUpload}
           />
           <Map
             height="400px"
             mapStyle="streets"
-            pin={pin}
-            handleCordsChange={handleCordsChange}
+            pin={{ longitude, latitude }}
+            handleCordsChange={onCordsChange}
           />
           <Button type="submit">Submit</Button>
         </Form>
       </Modal>
     </>
   );
+};
 
 AddHotel.propTypes = {
-  handleClickClose: PropTypes.func.isRequired,
-  handleClickOpen: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  handleUpload: PropTypes.func.isRequired,
-  handleCordsChange: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  values: PropTypes.object.isRequired,
+  addHotel: PropTypes.func.isRequired,
   errors: PropTypes.object
 };
 
-export default AddHotel;
+const mapStateToProps = ({ errors }) => ({ errors });
+
+export default connect(mapStateToProps, { addHotel })(AddHotel);

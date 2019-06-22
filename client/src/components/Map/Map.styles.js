@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { color } from '../../utils/styles';
 
-export const Preview = styled.div`
+export const Popup = styled.div`
   position: absolute;
   top: 50px;
   left: 30px;
-  width: 100%;
-  height: 100px;
+  width: 300px;
+  height: 75px;
+  padding: .2em;
   background: ${color.white};
   display: none;
 `;
@@ -14,8 +15,8 @@ export const Preview = styled.div`
 export const PinWrapper = styled.div`
   position: relative;
 
-  &:hover ${Preview} {
-    display: block;
+  &:hover ${Popup} {
+    display: flex;
   }
 `;
 
@@ -30,4 +31,21 @@ export const Navigation = styled.div`
   top: 0;
   left: 0;
   margin: 1em;
+`;
+
+export const Image = styled.img`
+  width: 90px;
+`;
+
+export const Info = styled.div`
+  padding-left: .4em;
+`;
+
+export const Title = styled.h2`
+  font-size: 1.1rem;
+`;
+
+export const Desc = styled.p`
+  font-size: .9em;
+  color: ${color.grey};
 `;

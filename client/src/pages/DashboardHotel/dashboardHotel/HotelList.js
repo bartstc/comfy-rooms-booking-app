@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { List, Empty } from './HotelList.styles';
 import Hotel from './hotelList/Hotel';
 
@@ -12,5 +13,9 @@ const HotelList = ({ hotels }) => (
     </List>
   </>
 );
+
+HotelList.propTypes = {
+  hotels: PropTypes.array
+};
 
 export default HotelList;

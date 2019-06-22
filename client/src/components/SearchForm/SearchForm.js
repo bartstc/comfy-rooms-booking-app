@@ -45,7 +45,6 @@ const SearchForm = ({ searchForRooms, history }) => {
     e.preventDefault();
 
     searchForRooms(values, { ...values, checkIn, checkOut });
-    console.log(values);
     if (history) history.push('/explore');
   };
 

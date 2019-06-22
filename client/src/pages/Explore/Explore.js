@@ -93,7 +93,7 @@ const Explore = ({
         <Filters handleFilters={onFilter} />
         {loading
           ? <Spinner />
-          : <RoomList rooms={rooms} {...order} />
+          : <RoomList />
         }
       </ExploreContainer>
     </>

@@ -8,7 +8,7 @@ const Header = () => (
     <Link to="/"><Logo>Comfy rooms</Logo></Link>
     <Link className="auth-link" to="/signin">
       <p>My profile</p>
-      <i className="far fa-user"></i>
+      <i aria-hidden="true" className="far fa-user" title="Go to profile"></i>
     </Link>
   </HeaderWrapper>
 );

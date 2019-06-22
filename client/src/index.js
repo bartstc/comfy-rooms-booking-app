@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -9,16 +9,19 @@ import { store } from './store';
 import Root from './store';
 
 import auth from './hoc/auth';
+import WaitingComponent from './hoc/lazy';
+
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
-import RoomDetails from './pages/RoomDetails/RoomDetails';
 import Explore from './pages/Explore/Explore';
 import SignUp from './pages/SignUp/SignUp';
 import SignIn from './pages/SignIn/SignIn';
-import DashboardUser from './pages/DashboardUser/DashboardUser';
-import DashboardHotel from './pages/DashboardHotel/DashboardHotel';
-import DashboardAdmin from './pages/DashboardAdmin/DashboardAdmin';
 import NotFound from './pages/NotFound/NotFound';
+
+const RoomDetails = lazy(() => import('./pages/RoomDetails/RoomDetails'));
+const DashboardHotel = lazy(() => import('./pages/DashboardHotel/DashboardHotel'));
+const DashboardUser = lazy(() => import('./pages/DashboardUser/DashboardUser'));
+const DashboardAdmin = lazy(() => import('./pages/DashboardAdmin/DashboardAdmin'));
 
 // CHECK FOR TOKEN (was added throught login action)
 if (localStorage.jwtToken) {
@@ -48,10 +51,10 @@ const Index = () => (
           <Route path="/explore" component={Explore} />
           <Route path="/signup" component={SignUp} />
           <Route path="/signin" component={SignIn} />
-          <Route path="/user_dashboard" component={auth(DashboardUser, true)} />
-          <Route path="/hotel_dashboard" component={auth(DashboardHotel, true)} />
-          <Route path="/admin_dashboard" component={auth(DashboardAdmin, true)} />
-          <Route path="/room/:id" component={RoomDetails} />
+          <Route path="/user_dashboard" component={WaitingComponent(auth(DashboardUser, true))} />
+          <Route path="/hotel_dashboard" component={WaitingComponent(auth(DashboardHotel, true))} />
+          <Route path="/admin_dashboard" component={WaitingComponent(auth(DashboardAdmin, true))} />
+          <Route path="/room/:id" component={WaitingComponent(RoomDetails)} />
           <Route component={NotFound} />
         </Switch>
       </Layout>

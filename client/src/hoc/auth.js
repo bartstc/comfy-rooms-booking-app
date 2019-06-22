@@ -18,8 +18,6 @@ export default (Component, reload = false) => {
         - 2: registered, allowed to add hotel offers
         - 3: admin
       */
-      // let profileExists = Object.keys(profile).length > 0;
-      // if (!profileExists) history.push('/create_profile');
 
       if (reload) {
         if (user.role === 0 || user.role === 1) history.push('/user_dashboard');

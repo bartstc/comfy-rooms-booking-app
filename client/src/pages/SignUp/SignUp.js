@@ -21,7 +21,7 @@ const SignUp = ({ signupUser, history, errors, auth: { isAuth } }) => {
     signupUser(values, history);
   };
 
-  if (isAuth) return <Redirect to="/profile" />;
+  if (isAuth) return <Redirect to="/user_dashboard" />;
 
   return (
     <div>

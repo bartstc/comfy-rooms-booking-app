@@ -39,16 +39,17 @@ export const Textarea = styled.textarea`
   }
 
   @media ${device.laptop} {
-    /* width: 100%; */
     min-width: 470px;
   }
 `;
 
-export const Error = styled.span`
+export const Error = styled.p`
   font-size: .8rem;
   color: red;
+  min-width: 280px;
+  text-align: center;
 `;
 
-export const Info = styled.span`
+export const Info = styled.p`
   font-size: .8rem;
 `;

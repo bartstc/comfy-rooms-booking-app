@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactMapGL, { NavigationControl, Marker } from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import PlaceTwoTone from "@material-ui/icons/PlaceTwoTone";
 
 import { MapWrapper, Navigation, Popup, PinWrapper, Image, Info, Title, Desc } from './Map.styles';

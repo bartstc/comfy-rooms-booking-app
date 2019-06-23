@@ -46,7 +46,6 @@ exports.createHotel = async (req, res) => {
     res.status(200).json(hotel);
   } catch (err) {
     res.status(400).json({ success: false, err });
-    console.log(err);
   };
 };
 
@@ -58,7 +57,6 @@ exports.getUserHotels = async (req, res) => {
     res.status(200).json(hotels);
   } catch (err) {
     res.status(400).json({ success: false, err });
-    console.log(err);
   };
 };
 

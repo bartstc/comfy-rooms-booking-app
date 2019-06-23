@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { RoomCard, ImageWrapper, Image, Content, WrapperLeft, WrapperRight, Icons, Type, Info, Location, Name } from './Room.styles';
+import { RoomCard, ImageWrapper, Image, Content, WrapperLeft, WrapperRight, Icons, Stars, Type, Info, Location, Name } from './Room.styles';
 
 const Room = ({
   _id,
@@ -10,7 +10,9 @@ const Room = ({
   city,
   hotel: { address, name, images, rating, opinions },
   stars,
-  price
+  price,
+  adults,
+  children
 }) => {
   return (
     <RoomCard>
@@ -24,16 +26,20 @@ const Room = ({
           <Type>{type}</Type>
           <Name>{name}</Name>
           <Location>{`${city}, ${address}`}</Location>
-          <Icons>
+          <Stars>
             {Array.from(Array(stars)).map((star, i) => <i key={i} className="fas fa-star"></i>)}
-          </Icons>
+          </Stars>
         </WrapperLeft>
         <WrapperRight>
           {rating === 0
             ? <Info>No ratings</Info>
-            : <Info><span>{Math.round(rating * 10) / 10}</span> ({opinions.length} votes)</Info>
+            : <Info><span>{Math.round(rating * 10) / 10}.0</span> ({opinions.length} votes)</Info>
           }
           <Info><span>$ {price}</span> / night</Info>
+          <Icons>
+            {Array.from(Array(adults)).map((icon, i) => <i key={i} className="fas fa-male"></i>)}
+            {Array.from(Array(children)).map((icon, i) => <i key={i} className="fas fa-baby"></i>)}
+          </Icons>
         </WrapperRight>
       </Content>
     </RoomCard>

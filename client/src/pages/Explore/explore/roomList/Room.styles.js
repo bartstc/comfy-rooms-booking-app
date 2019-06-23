@@ -59,6 +59,16 @@ export const WrapperRight = styled.div`
 `;
 
 export const Icons = styled.div`
+  font-size: 1.2rem;
+  margin-top: .2em;
+  margin-bottom: .4em;
+
+  .fas {
+    margin-right: .3em;
+  }
+`;
+
+export const Stars = styled.div`
   display: none;
   font-size: 1.2rem;
   margin-top: .3em;
@@ -87,8 +97,8 @@ export const Type = styled.p`
 
 export const Name = styled.h2`
   font-weight: ${fontWeight.bold};
+  font-size: 1.25rem;
   text-transform: uppercase;
-  font-size: 1.35rem;
   margin-top: .15em;
 
   @media ${device.mobileL} {
@@ -96,7 +106,7 @@ export const Name = styled.h2`
   }
 
   @media ${device.tablet} {
-    font-size: 1.55rem;
+    font-size: 1.4rem;
   }
 `;
 

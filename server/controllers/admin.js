@@ -27,6 +27,5 @@ exports.registerUser = async ({ user, body: { id } }, res) => {
     res.status(200).json(updatedProfile);
   } catch (err) {
     res.status(400).json({ success: false, err });
-    console.log(err);
   };
 };

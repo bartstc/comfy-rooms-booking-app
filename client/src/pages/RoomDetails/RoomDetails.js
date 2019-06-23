@@ -11,6 +11,7 @@ import Description from './roomDetails/Description';
 import Spinner from '../../components/Spinner/Spinner';
 import Map from '../../components/Map/Map';
 import Order from './roomDetails/Order';
+import ScrollToTopOnMount from '../../utils/ScrollToTopOnMount';
 
 class RoomDetails extends Component {
   state = {
@@ -29,56 +30,59 @@ class RoomDetails extends Component {
     const { room, loading } = this.props.rooms;
 
     return (
-      <DetailsContainer>
-        {loading && <Spinner />}
-        {room &&
-          <>
-            <Order
-              open={this.state.open}
-              handleClickClose={this.onClickClose}
-              orderInfo={{
-                hotel: room.hotel.name,
-                address: room.hotel.address,
-                city: room.city,
-                adults: room.adults,
-                children: room.children
-              }}
-            />
-            <Header
-              name={room.hotel.name}
-              city={room.city}
-              address={room.hotel.address}
-              stars={room.stars}
-              rating={Math.round(room.hotel.rating * 10) / 10}
-              votes={room.hotel.opinions.length}
-              price={room.price}
-              adults={room.adults}
-              children={room.children}
-              handleOpenModal={this.onClickOpen}
-            />
-            <Slider
-              images={room.hotel.images}
-            />
-            <Description
-              facilities={room.facilities}
-              description={room.hotel.description}
-            />
-            <Map
-              mapStyle="dark"
-              height="45vh"
-              pin={room.hotel.pin}
-              initViwport={{
-                latitude: room.hotel.pin.latitude,
-                longitude: room.hotel.pin.longitude,
-                zoom: 13
-              }}
-            />
-            <CommentList
-              opinions={room.hotel.opinions}
-            />
-          </>
-        }
-      </DetailsContainer>
+      <>
+        <ScrollToTopOnMount />
+        <DetailsContainer>
+          {loading && <Spinner />}
+          {room &&
+            <>
+              <Order
+                open={this.state.open}
+                handleClickClose={this.onClickClose}
+                orderInfo={{
+                  hotel: room.hotel.name,
+                  address: room.hotel.address,
+                  city: room.city,
+                  adults: room.adults,
+                  children: room.children
+                }}
+              />
+              <Header
+                name={room.hotel.name}
+                city={room.city}
+                address={room.hotel.address}
+                stars={room.stars}
+                rating={Math.round(room.hotel.rating * 10) / 10}
+                votes={room.hotel.opinions.length}
+                price={room.price}
+                adults={room.adults}
+                children={room.children}
+                handleOpenModal={this.onClickOpen}
+              />
+              <Slider
+                images={room.hotel.images}
+              />
+              <Description
+                facilities={room.facilities}
+                description={room.hotel.description}
+              />
+              <Map
+                mapStyle="dark"
+                height="45vh"
+                pin={room.hotel.pin}
+                initViwport={{
+                  latitude: room.hotel.pin.latitude,
+                  longitude: room.hotel.pin.longitude,
+                  zoom: 13
+                }}
+              />
+              <CommentList
+                opinions={room.hotel.opinions}
+              />
+            </>
+          }
+        </DetailsContainer>
+      </>
     );
   }
 };

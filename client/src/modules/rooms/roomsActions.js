@@ -21,7 +21,7 @@ export const searchForRooms = (searchData, orderData) => async dispatch => {
 };
 
 // Filter rooms
-export const filterRooms = (filters = [], limit = 10, skip = 0, searchData) => async dispatch => {
+export const filterRooms = (filters = [], limit = 8, skip = 0, searchData, prevState = []) => async dispatch => {
   const data = { filters, limit, skip, searchData };
 
   try {
@@ -29,7 +29,7 @@ export const filterRooms = (filters = [], limit = 10, skip = 0, searchData) => a
     const res = await axios.post('/api/rooms/filter', data);
     dispatch({
       type: SET_ROOMS,
-      payload: res.data
+      payload: [...prevState, ...res.data]
     });
   } catch (err) {
     console.log(err);

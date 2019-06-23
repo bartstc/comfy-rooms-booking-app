@@ -10,6 +10,7 @@ import SearchForm from '../../components/SearchForm/SearchForm';
 import RoomList from './explore/RoomList';
 import Filters from './explore/Filters';
 import Spinner from '../../components/Spinner/Spinner';
+import ScrollToTopOnMount from '../../utils/ScrollToTopOnMount';
 
 const initFilters = {
   type: [],
@@ -19,7 +20,7 @@ const initFilters = {
 };
 
 const initRestrictions = {
-  limit: 10,
+  limit: 8,
   skip: 0
 };
 
@@ -43,7 +44,7 @@ const Explore = ({
         searchData
       );
     };
-  }, [order, filters, restrictions, filterRooms]);
+  }, [order, filters, restrictions, filterRooms, rooms.length]);
 
   const handlePrice = (value) => {
     const data = price;
@@ -81,19 +82,41 @@ const Explore = ({
       filtersArray,
       restrictions.limit,
       0,
-      searchData
+      searchData,
+
     );
     setRestrictions({ ...restrictions, skip: 0 });
   };
 
+  const loadMoreResults = () => {
+    let skip = restrictions.skip + restrictions.limit;
+    const { city, adults, children } = order;
+    const searchData = { city, adults, children };
+
+    filterRooms(
+      filters,
+      restrictions.limit,
+      skip,
+      searchData,
+      rooms // prev rooms state (to merge old with new rooms)
+    );
+
+    setRestrictions({ ...restrictions, skip });
+  };
+
   return (
     <>
+      <ScrollToTopOnMount />
       <SearchForm />
       <ExploreContainer>
         <Filters handleFilters={onFilter} />
         {loading
           ? <Spinner />
-          : <RoomList />
+          : <RoomList
+            loadMoreResults={loadMoreResults}
+            limit={restrictions.limit}
+            skip={restrictions.skip}
+          />
         }
       </ExploreContainer>
     </>

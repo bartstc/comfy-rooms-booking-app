@@ -26,7 +26,6 @@ exports.createRoom = async (req, res) => {
     res.status(200).json(room);
   } catch (err) {
     res.status(400).json({ success: false, err });
-    console.log(err);
   };
 };
 
@@ -37,7 +36,6 @@ exports.getHotelRooms = async (req, res) => {
     res.status(200).json(rooms);
   } catch (err) {
     res.status(400).json({ success: false, err });
-    console.log(err);
   };
 };
 
@@ -53,7 +51,6 @@ exports.searchForRooms = async ({ body }, res) => {
     res.status(200).json(rooms);
   } catch (err) {
     res.status(400).json({ success: false, err });
-    console.log(err);
   };
 };
 
@@ -103,7 +100,6 @@ exports.filterRooms = async (req, res) => {
     res.status(200).json(rooms);
   } catch (err) {
     res.status(400).json({ success: false, err });
-    console.log(err);
   };
 };
 
@@ -118,7 +114,6 @@ exports.getRoom = async (req, res) => {
     res.status(200).json(room);
   } catch (err) {
     res.status(400).json({ success: false, err });
-    console.log(err);
   };
 };
 
@@ -127,6 +122,5 @@ exports.removeRoom = async ({ params: { id } }, res) => {
     await Room.findOneAndDelete({ _id: id });
   } catch (err) {
     res.status(400).json({ success: false, err });
-    console.log(err);
   };
 };

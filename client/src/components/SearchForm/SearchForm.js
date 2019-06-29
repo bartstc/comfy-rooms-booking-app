@@ -12,6 +12,10 @@ const initState = {
   children: '0'
 };
 
+const capitalize = string => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const SearchForm = ({ searchForRooms, history }) => {
   // date state (check in, check out)
   const [checkIn, setCheckIn] = useState(new Date());
@@ -22,7 +26,7 @@ const SearchForm = ({ searchForRooms, history }) => {
 
   const onChange = e => {
     e.persist();
-    setValues(values => ({ ...values, [e.target.name]: e.target.value }));
+    setValues(values => ({ ...values, [e.target.name]: capitalize(e.target.value) }));
   };
 
   const onDateChange = ({ start, end }) => {

@@ -122,7 +122,7 @@ Root store file. Initializes the redux store.
 
 ## Preview
 
-Development still in progress.
+[Comfy Rooms App](https://morning-wave-69516.herokuapp.com/)
 
 ## License
 

@@ -122,8 +122,7 @@ Root store file. Initializes the redux store.
 
 ## Preview
 
-You can see this app in action.
-https://comfy-rooms.herokuapp.com/
+Development still in progress.
 
 ## License
 

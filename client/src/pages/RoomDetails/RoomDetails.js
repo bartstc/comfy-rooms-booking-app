@@ -5,7 +5,7 @@ import { getRoom } from '../../modules/rooms/roomsActions';
 import { DetailsContainer } from './RoomDetails.styles';
 
 import Header from './roomDetails/Header';
-// import Slider from './roomDetails/Slider';
+import Slider from './roomDetails/Slider';
 import CommentList from './roomDetails/CommentList';
 import Description from './roomDetails/Description';
 import Spinner from '../../components/Spinner/Spinner';
@@ -59,9 +59,9 @@ class RoomDetails extends Component {
                 children={room.children}
                 handleOpenModal={this.onClickOpen}
               />
-              {/* <Slider
+              <Slider
                 images={room.hotel.images}
-              /> */}
+              />
               <Description
                 facilities={room.facilities}
                 description={room.hotel.description}

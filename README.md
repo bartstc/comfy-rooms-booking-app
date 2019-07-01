@@ -39,7 +39,7 @@ npm run dev
 * [MongoDB](https://www.mongodb.com/) database
 * [Heroku](https://www.heroku.com/) deployment
 
-## Software Used
+## Project Learning Goals
 
 * [Fractal](https://hackernoon.com/fractal-a-react-app-structure-for-infinite-scale-4dab943092af) - react app folder structure
 * Using external libraries and APIs

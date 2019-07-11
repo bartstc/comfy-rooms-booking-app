@@ -1,6 +1,6 @@
 # Comfy Rooms
 
-Fullstack project wriiten in React and Express. The application is used to search for room offers and to book them after creating an account. the logged in user has access to the management panel of his orders. You can also create a special account to add and manage your own offers.
+Fullstack project written in React and Express. The application is used to search for room offers and to book them after creating an account. The logged in user has access to the management panel of his orders. You can also create a special account to add and manage your own offers.
 
 ![ggg](https://user-images.githubusercontent.com/42715741/60240392-14604e80-98b1-11e9-8ea8-1ad8431626b9.png)
 
@@ -29,7 +29,7 @@ npm run dev
 ## Software Used
 
 * [React](https://reactjs.org/) with react hooks
-* [Redux](https://redux.js.org/) state mamagement
+* [Redux](https://redux.js.org/) state management
 * [Styled-components](https://www.styled-components.com/) for styles
 * [Google Maps API](https://developers.google.com/maps/documentation/)
 * [Stripe](https://stripe.com/) for making payments

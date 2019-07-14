@@ -31,7 +31,7 @@ npm run dev
 * [React](https://reactjs.org/) with react hooks
 * [Redux](https://redux.js.org/) state management
 * [Styled-components](https://www.styled-components.com/) for styles
-* [Google Maps API](https://developers.google.com/maps/documentation/)
+* [Mapbox Maps API](https://www.mapbox.com/)
 * [Stripe](https://stripe.com/) for making payments
 * [Cloudinary](https://cloudinary.com/) asset management
 * [Express](https://expressjs.com/) for server

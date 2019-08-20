@@ -18,7 +18,7 @@ const Order = ({
   orderInfo: { hotel, city, address, adults, children },
   order,
   rooms: { room },
-  auth: { isAuth }
+  auth: { isAuth, user }
 }) => {
   const [checkIn, setCheckIn] = useState(new Date());
   const [checkOut, setCheckOut] = useState(new Date());
@@ -73,7 +73,8 @@ const Order = ({
       title="Book a room"
     >
       {!isAuth && <Info center>You must create an account to be able to book rooms.</Info>}
-      {isAuth &&
+      {isAuth && user.role > 0 && <Info center>No access to room reservation options. Please create a standard account.</Info>}
+      {isAuth && user.role === 0 &&
         <>
           <Info>Hotel: <span>{hotel}</span></Info>
           <Info>City: <span>{city}</span></Info>

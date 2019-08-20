@@ -14,14 +14,17 @@ const initState = {
   password: ''
 };
 
-const SignUp = ({ signupUser, history, errors, auth: { isAuth } }) => {
+const SignUp = ({ signupUser, history, errors, auth: { isAuth, user } }) => {
   const { values, handleChange, handleSubmit } = useForm(signUp, initState);
 
   function signUp() {
     signupUser(values, history);
   };
 
-  if (isAuth) return <Redirect to="/user_dashboard" />;
+  if (isAuth && user.role === 0) return <Redirect to="/user_dashboard" />;
+  if (isAuth && user.role === 1) return <Redirect to="/user_dashboard" />;
+  if (isAuth && user.role === 2) return <Redirect to="/hotel_dashboard" />;
+  if (isAuth && user.role === 3) return <Redirect to="/admin_dashboard" />;
 
   return (
     <div>

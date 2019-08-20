@@ -13,14 +13,17 @@ const initState = {
   password: ''
 };
 
-const SignIn = ({ signinUser, history, errors, auth: { isAuth } }) => {
+const SignIn = ({ signinUser, history, errors, auth: { isAuth, user } }) => {
   const { values, handleChange, handleSubmit } = useForm(signIn, initState);
 
   function signIn() {
     signinUser(values, history);
   };
 
-  if (isAuth) return <Redirect to="/user_dashboard" />;
+  if (isAuth && user.role === 0) return <Redirect to="/user_dashboard" />;
+  if (isAuth && user.role === 1) return <Redirect to="/user_dashboard" />;
+  if (isAuth && user.role === 2) return <Redirect to="/hotel_dashboard" />;
+  if (isAuth && user.role === 3) return <Redirect to="/admin_dashboard" />;
 
   return (
     <AuthWrapper

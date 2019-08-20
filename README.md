@@ -1,6 +1,6 @@
 # Comfy Rooms
 
-Fullstack project wriiten in React and Express. The application is used to search for room offers and to book them after creating an account. the logged in user has access to the management panel of his orders. You can also create a special account to add and manage your own offers.
+Fullstack project written in React and Express. The application is used to search for room offers and to book them after creating an account. The logged in user has access to the management panel of his orders. You can also create a special account to add and manage your own offers.
 
 ![ggg](https://user-images.githubusercontent.com/42715741/60240392-14604e80-98b1-11e9-8ea8-1ad8431626b9.png)
 
@@ -29,15 +29,22 @@ npm run dev
 ## Software Used
 
 * [React](https://reactjs.org/) with react hooks
-* [Redux](https://redux.js.org/) state mamagement
+* [Redux](https://redux.js.org/) state management
 * [Styled-components](https://www.styled-components.com/) for styles
-* [Google Maps API](https://developers.google.com/maps/documentation/)
+* [Mapbox Maps API](https://www.mapbox.com/)
 * [Stripe](https://stripe.com/) for making payments
 * [Cloudinary](https://cloudinary.com/) asset management
 * [Express](https://expressjs.com/) for server
 * [JSON Web Token](https://jwt.io/) for auth
 * [MongoDB](https://www.mongodb.com/) database
 * [Heroku](https://www.heroku.com/) deployment
+
+## Project Learning Goals
+
+* [Fractal](https://hackernoon.com/fractal-a-react-app-structure-for-infinite-scale-4dab943092af) - react app folder structure
+* Using external libraries and APIs
+* Role based authentication (based on JWT)
+* React hooks
 
 ## Description of Contents
 
@@ -122,7 +129,7 @@ Root store file. Initializes the redux store.
 
 ## Preview
 
-Development still in progress.
+[Comfy Rooms App](https://morning-wave-69516.herokuapp.com/)
 
 ## License
 

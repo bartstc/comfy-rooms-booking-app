@@ -1,3 +1,5 @@
+[Server side remake with typescript.](https://github.com/bartstc/comfy-rooms-ts-server/tree/master)
+
 # Comfy Rooms
 
 Fullstack project written in React and Express. The application is used to search for room offers and to book them after creating an account. The logged in user has access to the management panel of his orders. You can also create a special account to add and manage your own offers.
